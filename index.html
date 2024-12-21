@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
     <meta name="msvalidate.01" content="C199C58C0B1359BEC8C9052B5951AD6F" />
@@ -8,7 +8,6 @@
     <meta name="description" content="Peuri's Portfolio">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 <link rel="stylesheet" href="styles.css">
-
 <meta property="og:title" content="Peuri">
 <meta property="og:description" content="Website Portfolio">
 <meta property="og:image" content="logo.png">
@@ -21,30 +20,94 @@
 <meta name="twitter:title" content="Peuri">
 <meta name="twitter:description" content="Peuri's Portfolio">
 <meta name="twitter:image" content="logo.png">
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 
 
 </head>
 
 <body>
-    <!-- Navigation Bar -->
-    <nav>
-        <div class="nav-container">
-            <h1> Peuri</h1>
-            <div class="nav-details">
-                <div id="time"></div>
-                <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
-            </div>
+
+
+<nav>
+    <div class="nav-container">
+        <h1>Petteri Peuri</h1>
+        <div class="nav-details">
+            <div id="time"></div>
+            <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
         </div>
-    </nav>
+    </div>
+</nav>
 
-    <!-- Page Content -->
-    <h1>Welcome to Peuri's Portfolio</h1>
-    <p></p>
+    <div class="content page-container">
 
-    <!-- Footer -->
-    <footer>
-        <p></p>
-    </footer>
+    <p>Hi, I'm 34 years old, passionate software developer with a strong foundation in web development and cloud technologies.
+I'm dedicated to build and work with products that solve problems and help people.
+My strenghts lie in building secure products from ground up.
+I'm Fluent in English and Finnish. In my spare time I enjoy physical activities, beekeeping and boating.</p>
+        </div>
+
+<div class="skills-tools page-container">
+    <h1>Skills & Tools</h1>
+    <div class="skills-grid">
+        <div class="skill-box">Python</div>
+        <div class="skill-box">JavaScript</div>
+        <div class="skill-box">HTML5</div>
+        <div class="skill-box">CSS3</div>
+        <div class="skill-box">Flask</div>
+        <div class="skill-box">React</div>
+        <div class="skill-box">Tailwind CSS</div>
+        <div class="skill-box">Bootstrap</div>
+        <div class="skill-box">jQuery</div>
+        <div class="skill-box">Git</div>
+        <div class="skill-box">GitHub Actions</div>
+        <div class="skill-box">Nginx</div>
+        <div class="skill-box">Gunicorn</div>
+        <div class="skill-box">Linux</div>
+        <div class="skill-box">tmux</div>
+        <div class="skill-box">Oracle Cloud</div>
+        <div class="skill-box">Google Cloud</div>
+        <div class="skill-box">Vercel</div>
+        <div class="skill-box">Cloudflare</div>
+        <div class="skill-box">SELinux</div>
+        <div class="skill-box">SSL/TLS</div>
+        <div class="skill-box">Google OAuth</div>
+        <div class="skill-box">MySQL</div>
+        <div class="skill-box">SQLite</div>
+        <div class="skill-box">SQLAlchemy</div>
+        <div class="skill-box">WordPress</div>
+        <div class="skill-box">Squarespace</div>
+    </div>
+</div>
+
+
+
+    </div>
+
+
+
+
+<!-- Footer -->
+<footer>
+    <ul class="footer-links">
+        <li>
+            <a href="index.html">
+                <i class="fas fa-home"></i>
+            </a>
+        </li>
+        <li>
+            <a href="work.html">
+                <i class="fas fa-briefcase"></i>
+            </a>
+        </li>
+        <li>
+            <a href="contact.html">
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+    </ul>
+</footer>
+
 
     <script>
         // Update current time
@@ -72,6 +135,11 @@
         // Initialize time and theme
         setInterval(updateTime, 1000);
         updateTime();  // Initial call to show the time immediately
+
+        document.querySelectorAll('.skill-box').forEach((box, index) => {
+    box.style.animationDelay = `${index * 0.2}s`; // Staggered delay: 0.2s per box
+});
+
     </script>
 
 
