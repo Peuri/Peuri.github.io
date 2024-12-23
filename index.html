@@ -22,7 +22,12 @@
 <meta name="twitter:image" content="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+<script>
+    // Immediate theme check
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+</script>
 
 </head>
 
@@ -43,8 +48,7 @@
 
     <p>Hi, I'm 34 years old, passionate software developer with a strong foundation in web development and cloud technologies.
 I'm dedicated to build and work with products that solve problems and help people.
-My strenghts lie in building secure products from ground up.
-I'm Fluent in English and Finnish. In my spare time I enjoy physical activities, beekeeping and boating.</p>
+My strenghts lie in building secure products from ground up. In my spare time I enjoy physical activities, beekeeping and boating.</p>
         </div>
 
 <div class="skills-tools page-container">
@@ -55,28 +59,24 @@ I'm Fluent in English and Finnish. In my spare time I enjoy physical activities,
         <div class="skill-box">HTML5</div>
         <div class="skill-box">CSS3</div>
         <div class="skill-box">Flask</div>
-        <div class="skill-box">React</div>
-        <div class="skill-box">Tailwind CSS</div>
-        <div class="skill-box">Bootstrap</div>
         <div class="skill-box">jQuery</div>
         <div class="skill-box">Git</div>
-        <div class="skill-box">GitHub Actions</div>
-        <div class="skill-box">Nginx</div>
-        <div class="skill-box">Gunicorn</div>
-        <div class="skill-box">Linux</div>
-        <div class="skill-box">tmux</div>
+        <div class="skill-box">Cloudflare</div>
         <div class="skill-box">Oracle Cloud</div>
         <div class="skill-box">Google Cloud</div>
-        <div class="skill-box">Vercel</div>
-        <div class="skill-box">Cloudflare</div>
-        <div class="skill-box">SELinux</div>
-        <div class="skill-box">SSL/TLS</div>
         <div class="skill-box">Google OAuth</div>
+        <div class="skill-box">Vercel</div>
         <div class="skill-box">MySQL</div>
         <div class="skill-box">SQLite</div>
         <div class="skill-box">SQLAlchemy</div>
-        <div class="skill-box">WordPress</div>
-        <div class="skill-box">Squarespace</div>
+        <div class="skill-box">Nginx</div>
+        <div class="skill-box">Gunicorn</div>
+        <div class="skill-box">tmux</div>
+        <div class="skill-box">SSL/TLS</div>
+        <div class="skill-box">MySQL</div>
+        <div class="skill-box">SQLite</div>
+        <div class="skill-box">SQLAlchemy</div>
+
     </div>
 </div>
 
@@ -109,38 +109,60 @@ I'm Fluent in English and Finnish. In my spare time I enjoy physical activities,
 </footer>
 
 
-    <script>
-        // Update current time
-        function updateTime() {
-            const timeElement = document.getElementById("time");
+
+
+<script>
+    function loadTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const body = document.body;  // Changed to body
+        const themeButton = document.getElementById("theme-toggle");
+
+        if (savedTheme === 'dark') {
+            body.classList.add("dark-theme");
+            themeButton.innerHTML = "🌞";
+        } else {
+            body.classList.remove("dark-theme");
+            themeButton.innerHTML = "🌙";
+        }
+    }
+
+    function toggleTheme() {
+        const body = document.body;  // Changed to body
+        const themeButton = document.getElementById("theme-toggle");
+
+        body.classList.toggle("dark-theme");
+
+        if (body.classList.contains("dark-theme")) {
+            localStorage.setItem('theme', 'dark');
+            themeButton.innerHTML = "🌞";
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeButton.innerHTML = "🌙";
+        }
+    }
+
+    // Update current time
+    function updateTime() {
+        const timeElement = document.getElementById("time");
+        if (timeElement) {
             const now = new Date();
             const options = { timeZone: 'Europe/Helsinki', hour12: false };
             timeElement.innerHTML = now.toLocaleTimeString('fi-FI', options);
         }
+    }
 
-        // Toggle between light and dark theme
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle("dark-theme");
-            const themeButton = document.getElementById("theme-toggle");
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTheme();  // Load saved theme preference
+        updateTime(); // Initial time update
+        setInterval(updateTime, 1000); // Start time updates
 
-            // Change button text based on the theme
-            if (body.classList.contains("dark-theme")) {
-                themeButton.innerHTML = "🌞";
-            } else {
-                themeButton.innerHTML = "🌙";
-            }
-        }
-
-        // Initialize time and theme
-        setInterval(updateTime, 1000);
-        updateTime();  // Initial call to show the time immediately
-
+        // Initialize skill box animations if they exist
         document.querySelectorAll('.skill-box').forEach((box, index) => {
-    box.style.animationDelay = `${index * 0.2}s`; // Staggered delay: 0.2s per box
-});
-
-    </script>
+            box.style.animationDelay = `${index * 0.2}s`;
+        });
+    });
+</script>
 
 
 </body>

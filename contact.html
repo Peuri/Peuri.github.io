@@ -22,7 +22,12 @@
 <meta name="twitter:image" content="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-
+<script>
+    // Immediate theme check
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+</script>
 
 </head>
 
@@ -39,10 +44,22 @@
     </nav>
 
     <div class="content page-container">
+        <div class="contact">
+            <p>I'm always open to new opportunities. I offer responsive design, SEO and speed optimization, custom websites and user analytics. If you have a project in mind, or you would like my help on your website, feel free to contact me. We can discuss how we can work together to make your project a success.
+            </p>
+        </div>
+    </div>
+
+
+
+    <div class="content page-container">
         <div class="contact-icons">
         <a href="mailto:ppeuri91@gmail.com" aria-label="Email">
             <i class="fas fa-envelope"></i> Email
         </a>
+            <a href="https://wa.me/+639664734210" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
         <a href="https://github.com/Peuri" target="_blank" aria-label="GitHub">
             <i class="fab fa-github"></i> Github
         </a>
@@ -69,37 +86,59 @@
         </ul>
     </footer>
 
-    <script>
-        // Update current time
-        function updateTime() {
-            const timeElement = document.getElementById("time");
+
+<script>
+    function loadTheme() {
+        const savedTheme = localStorage.getItem('theme');
+        const body = document.body;  // Changed to body
+        const themeButton = document.getElementById("theme-toggle");
+
+        if (savedTheme === 'dark') {
+            body.classList.add("dark-theme");
+            themeButton.innerHTML = "🌞";
+        } else {
+            body.classList.remove("dark-theme");
+            themeButton.innerHTML = "🌙";
+        }
+    }
+
+    function toggleTheme() {
+        const body = document.body;  // Changed to body
+        const themeButton = document.getElementById("theme-toggle");
+
+        body.classList.toggle("dark-theme");
+
+        if (body.classList.contains("dark-theme")) {
+            localStorage.setItem('theme', 'dark');
+            themeButton.innerHTML = "🌞";
+        } else {
+            localStorage.setItem('theme', 'light');
+            themeButton.innerHTML = "🌙";
+        }
+    }
+
+    // Update current time
+    function updateTime() {
+        const timeElement = document.getElementById("time");
+        if (timeElement) {
             const now = new Date();
             const options = { timeZone: 'Europe/Helsinki', hour12: false };
             timeElement.innerHTML = now.toLocaleTimeString('fi-FI', options);
         }
+    }
 
-        // Toggle between light and dark theme
-        function toggleTheme() {
-            const body = document.body;
-            body.classList.toggle("dark-theme");
-            const themeButton = document.getElementById("theme-toggle");
+    // Initialize everything
+    document.addEventListener('DOMContentLoaded', () => {
+        loadTheme();  // Load saved theme preference
+        updateTime(); // Initial time update
+        setInterval(updateTime, 1000); // Start time updates
 
-            // Change button text based on the theme
-            if (body.classList.contains("dark-theme")) {
-                themeButton.innerHTML = "🌞";
-            } else {
-                themeButton.innerHTML = "🌙";
-            }
-        }
-
-        // Initialize time and theme
-        setInterval(updateTime, 1000);
-        updateTime();  // Initial call to show the time immediately
-
+        // Initialize skill box animations if they exist
         document.querySelectorAll('.skill-box').forEach((box, index) => {
-            box.style.animationDelay = `${index * 0.2}s`; // Staggered delay: 0.2s per box
+            box.style.animationDelay = `${index * 0.2}s`;
         });
-    </script>
+    });
+</script>
 
 </body>
 </html>
