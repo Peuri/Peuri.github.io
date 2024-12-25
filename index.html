@@ -134,31 +134,68 @@
 
 
 
-<!-- Footer -->
 <footer>
     <ul class="footer-links">
         <li>
-            <a href="index.html">
+            <a href="index.html" class="active" aria-label="Go to home page">
                 <i class="fas fa-home"></i>
             </a>
         </li>
         <li>
-            <a href="work.html">
+            <a href="work.html" aria-label="View my work">
                 <i class="fas fa-briefcase"></i>
             </a>
         </li>
         <li>
-            <a href="contact.html">
+            <a href="contact.html" aria-label="Contact me">
                 <i class="fas fa-envelope"></i>
             </a>
         </li>
     </ul>
+        <div class="indicator"></div>
 </footer>
 
 
 
 
+
 <script>
+document.addEventListener("DOMContentLoaded", function () {
+    const currentPage = window.location.pathname;
+    const links = document.querySelectorAll('.footer-links a');
+
+    links.forEach(link => {
+        if (link.href.includes(currentPage)) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+
+    // Add a slight delay before updating the indicator position to ensure DOM has settled
+    setTimeout(updateIndicator, 100);
+});
+
+window.addEventListener("resize", updateIndicator); // Reposition on window resize
+
+function updateIndicator() {
+  const activeLink = document.querySelector('.footer-links a.active');
+  const indicator = document.querySelector('.indicator');
+
+  if (activeLink && indicator) {
+    const linkRect = activeLink.getBoundingClientRect();
+    const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
+    indicator.style.left = `${newLeft}px`;
+  }
+}
+
+
+
+
+
+
+
+
     function loadTheme() {
         const savedTheme = localStorage.getItem('theme');
         const body = document.body;  // Changed to body

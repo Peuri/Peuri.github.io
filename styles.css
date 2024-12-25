@@ -264,7 +264,18 @@ footer {
     font-size: 1.5em;
 }
 
+.indicator {
+    position: absolute;
+    bottom: 5;
+    width: 8px;
+    height: 8px;
+    background-color: #007bff;
+    border-radius: 50%;
+    transition: left 0.3s ease; }
 
+.indicator.transition-to {
+  // Empty rule, just for triggering the transition
+}
 
 .contact-icons {
     display: flex;  /* Ensures the icons are aligned in a row */
