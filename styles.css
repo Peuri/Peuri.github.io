@@ -95,6 +95,15 @@ nav {
     width: 100%;
 }
 
+.skills {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(70px, 2fr));
+    justify-content: start;
+    gap: 5px;
+    margin-top: 20px;
+    padding: 0;
+    width: 100%;
+}
 
 .skill-box {
     height: 30px;
@@ -102,8 +111,8 @@ nav {
     align-items: center;
     justify-content: center;
     background-color: #f4f4f4;
-    border: 1px solid #ddd;
-    border-radius: 8px;
+    border: 1px solid black;
+    border-radius: 0px;
     padding: 5px 5px;
     font-size: 0.7em;
     font-weight: 500;
@@ -122,6 +131,27 @@ nav {
     transform: translateY(-5px);
 }
 
+    .skill-box .tooltip {
+        visibility: hidden;
+        position: absolute;
+        bottom: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: black;
+        color: white;
+        text-align: center;
+        padding: 5px;
+        border-radius: 5px;
+        font-size: 0.8em;
+        opacity: 0;
+        transition: opacity 0.3s;
+        z-index: 1;
+    }
+
+    .skill-box:hover .tooltip {
+        visibility: visible;
+        opacity: 1;
+    }
 
 @keyframes slideIn {
     0% {
@@ -181,6 +211,8 @@ body.dark-theme .projects-container .project .project-link {
     color: #fff;
 }
 
+
+
 body.dark-theme .contact-icons a {
     color: #fff;
     transition: color 0.3s ease;
@@ -234,14 +266,10 @@ footer {
 
 
 
-
-
-
-
 .contact-icons {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
+    display: flex;  /* Ensures the icons are aligned in a row */
+    justify-content: center;  /* Centers the icons */
+    gap: 30px;  /* Adds space between the icons */
     padding: 20px 0;
 }
 
@@ -255,6 +283,22 @@ footer {
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
+.contact-icons a:hover {
+    transform: scale(1.1);
+}
+
+.contact-icons .email:hover {
+    color: #D44638;  /* Red color for email */
+}
+
+.contact-icons .whatsapp:hover {
+    color: #25D366;  /* Green color for WhatsApp */
+}
+
+.contact-icons .github:hover {
+    color: #333;  /* GitHub color */
+}
+
 .contact-icons i {
     font-size: 28px;
     margin-bottom: 5px;
@@ -266,10 +310,7 @@ footer {
     margin-top: 5px;
 }
 
-.contact-icons a:hover {
-    transform: scale(1.1);
-    color: #007bff;
-}
+
 
 
 @media (max-width: 768px) {
@@ -384,8 +425,12 @@ footer {
     font-size: 1.5em;
     margin-bottom: 10px;
     color: #333;
+    text-decoration: underline;
 }
 
+.project h3 i {
+    margin-right: 10px;
+}
 
 .project p {
     font-size: 1em;
@@ -399,14 +444,25 @@ footer {
     text-decoration: none;
     font-size: 0.9em;
     color: #4CAF50;
-    transition: transform 0.3s ease, color 0.3s ease;
+    margin-top: 15px;
+    display: inline-block;
+    position: relative;
 }
 
-.project-link:hover {
-    color: #45a049;
-    transform: scale(1.1);
+.project-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -2px;
+    left: 0;
+    background-color: #45a049;
+    transition: width 0.3s ease;
 }
 
+.project-link:hover::after {
+    width: 100%;
+}
 
 
 
