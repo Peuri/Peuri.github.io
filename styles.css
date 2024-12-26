@@ -17,6 +17,10 @@ html, body {
     flex-grow: 1;
 }
 
+::-webkit-scrollbar {
+    width: 0px; /* Hides the scrollbar */
+    height: 0px; /* Hides horizontal scrollbar */
+}
 h1 {
     text-rendering: optimizeLegibility;
 }
@@ -417,23 +421,12 @@ footer {
 
 
 
-.projects-container {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px 0;
-    width: 100%;
-}
+
 
 
 .project {
-    padding: 20px;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    border: none;
-    box-shadow: none;
+
+
 }
 
 
@@ -450,7 +443,7 @@ footer {
 
 .project p {
     font-size: 1em;
-    color: #666;
+    color: #333;
     line-height: 1.6;
     margin-bottom: 15px;
 }
@@ -483,12 +476,9 @@ footer {
 
 
 @media (max-width: 768px) {
-    .projects-container {
-        gap: 10px;
-    }
+
 
     .project {
-        padding: 15px;
     }
 
     .project h3 {
