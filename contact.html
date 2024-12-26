@@ -92,42 +92,62 @@
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll('.footer-links a');
-    const currentPage = window.location.pathname;
-
-    links.forEach(link => {
-        if (link.href.includes(currentPage)) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
-
-    // Position the indicator immediately
-    const activeLink = document.querySelector('.footer-links a.active');
     const indicator = document.querySelector('.indicator');
+    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
 
-    if (activeLink && indicator) {
-        const linkRect = activeLink.getBoundingClientRect();
-        const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
-        indicator.style.left = `${newLeft}px`; // Set position
-    }
-
-    // Add the resize listener for smooth movement later
-    window.addEventListener("resize", updateIndicator);
-
-    function updateIndicator() {
-        const activeLink = document.querySelector('.footer-links a.active');
-        const indicator = document.querySelector('.indicator');
-
+    // Function to update indicator position
+    function updateIndicator(activeLink, animate = true) {
         if (activeLink && indicator) {
             const linkRect = activeLink.getBoundingClientRect();
             const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
 
-            requestAnimationFrame(() => {
+            if (!animate) {
+                indicator.style.transition = 'none';
                 indicator.style.left = `${newLeft}px`;
-            });
+                // Force a reflow
+                indicator.offsetHeight;
+                indicator.style.transition = 'left 0.3s ease-in-out';
+            } else {
+                indicator.style.left = `${newLeft}px`;
+            }
         }
     }
+
+    // Set initial active state and position
+    links.forEach(link => {
+        // Set initial active state
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+            // Initial positioning without animation
+            updateIndicator(link, false);
+        }
+
+        // Add click event listeners
+        link.addEventListener('click', (e) => {
+            // Remove active class from all links
+            links.forEach(l => l.classList.remove('active'));
+
+            // Add active class to clicked link
+            link.classList.add('active');
+
+            // Update indicator position with animation
+            updateIndicator(link, true);
+
+            // Small delay to allow animation to complete before page change
+            if (!e.ctrlKey && !e.shiftKey && !e.metaKey && e.button !== 1) {
+                e.preventDefault();
+                setTimeout(() => {
+                    window.location.href = link.href;
+                }, 300); // Match this with your CSS transition time
+            }
+        });
+    });
+
+    // Update on window resize
+    window.addEventListener("resize", () => {
+        const activeLink = document.querySelector('.footer-links a.active');
+        updateIndicator(activeLink, true);
+    });
 });
 
 

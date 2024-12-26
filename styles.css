@@ -17,6 +17,9 @@ html, body {
     flex-grow: 1;
 }
 
+h1 {
+    text-rendering: optimizeLegibility;
+}
 
 nav {
     display: flex;
@@ -44,6 +47,7 @@ nav {
 }
 
 .nav-container h1 {
+    text-rendering: optimizeLegibility;
     margin: 0;
     font-size: 1.3em;
     margin-left: -40px;
@@ -77,8 +81,9 @@ nav {
 }
 
 .skills-tools h1 {
-    margin: 0 0 10px 0;
-    font-size: 1.8em;
+    text-rendering: optimizeLegibility;
+    margin: 0;
+    font-size: 1.3em;
     text-align: left;
     padding: 0;
 }
