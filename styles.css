@@ -271,8 +271,8 @@ footer {
     height: 8px;
     background-color: #007bff;
     border-radius: 50%;
-    left: 0;
-    transition: left 0s;
+    left: 50%;
+    transition: left 0.3s ease-in-out;
 }
 
 
