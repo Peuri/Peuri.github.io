@@ -20,7 +20,7 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Peuri">
 <meta name="twitter:description" content="Peuri's Portfolio">
-<meta name="twitter:image" content="logo.png"><meta name="google-site-verification" content="rwocjvTKGXOvw9WJydHWhZMBJTA38_snNXZrv0auzDs" />
+<meta name="twitter:image" content="logo.png">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 <script>
@@ -160,34 +160,46 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const currentPage = window.location.pathname;
-    const links = document.querySelectorAll('.footer-links a');
+document.addEventListener("DOMContentLoaded", () => {
+  const currentPage = window.location.pathname;
+  const links = document.querySelectorAll('.footer-links a');
 
-    links.forEach(link => {
-        if (link.href.includes(currentPage)) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
+  links.forEach(link => {
+    if (link.href.includes(currentPage)) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
 
-    // Add a slight delay before updating the indicator position to ensure DOM has settled
-    setTimeout(updateIndicator, 100);
+  updateIndicator();
+  window.addEventListener("resize", updateIndicator);
+
+  function updateIndicator() {
+    const activeLink = document.querySelector('.footer-links a.active');
+    const indicator = document.querySelector('.indicator');
+
+    if (activeLink && indicator) {
+      const linkRect = activeLink.getBoundingClientRect();
+      const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
+
+      requestAnimationFrame(() => {
+        indicator.style.left = `${newLeft}px`;
+        indicator.style.transition = 'left 0.3s ease-in-out';
+      });
+    }
+  }
 });
 
-window.addEventListener("resize", updateIndicator); // Reposition on window resize
 
-function updateIndicator() {
-  const activeLink = document.querySelector('.footer-links a.active');
-  const indicator = document.querySelector('.indicator');
 
-  if (activeLink && indicator) {
-    const linkRect = activeLink.getBoundingClientRect();
-    const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
-    indicator.style.left = `${newLeft}px`;
-  }
-}
+
+
+
+
+
+
+
 
 
 

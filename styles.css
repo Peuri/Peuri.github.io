@@ -266,21 +266,21 @@ footer {
 
 .indicator {
     position: absolute;
-    bottom: 5;
+    bottom: 5px;
     width: 8px;
     height: 8px;
     background-color: #007bff;
     border-radius: 50%;
-    transition: left 0.3s ease; }
-
-.indicator.transition-to {
-  // Empty rule, just for triggering the transition
+    left: 0;
+    transition: left 0s;
 }
 
+
+
 .contact-icons {
-    display: flex;  /* Ensures the icons are aligned in a row */
-    justify-content: center;  /* Centers the icons */
-    gap: 30px;  /* Adds space between the icons */
+    display: flex;
+    justify-content: center;
+    gap: 30px;
     padding: 20px 0;
 }
 
@@ -299,15 +299,15 @@ footer {
 }
 
 .contact-icons .email:hover {
-    color: #D44638;  /* Red color for email */
+    color: #D44638;
 }
 
 .contact-icons .whatsapp:hover {
-    color: #25D366;  /* Green color for WhatsApp */
+    color: #25D366;
 }
 
 .contact-icons .github:hover {
-    color: #333;  /* GitHub color */
+    color: #333;
 }
 
 .contact-icons i {

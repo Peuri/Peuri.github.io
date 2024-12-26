@@ -102,34 +102,44 @@
 
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    const currentPage = window.location.pathname;
-    const links = document.querySelectorAll('.footer-links a');
+document.addEventListener("DOMContentLoaded", () => {
+  const currentPage = window.location.pathname;
+  const links = document.querySelectorAll('.footer-links a');
 
-    links.forEach(link => {
-        if (link.href.includes(currentPage)) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
-        }
-    });
+  links.forEach(link => {
+    if (link.href.includes(currentPage)) {
+      link.classList.add('active');
+    } else {
+      link.classList.remove('active');
+    }
+  });
 
-    // Add a slight delay before updating the indicator position to ensure DOM has settled
-    setTimeout(updateIndicator, 100);
+  updateIndicator();
+  window.addEventListener("resize", updateIndicator);
+
+  function updateIndicator() {
+    const activeLink = document.querySelector('.footer-links a.active');
+    const indicator = document.querySelector('.indicator');
+
+    if (activeLink && indicator) {
+      const linkRect = activeLink.getBoundingClientRect();
+      const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
+
+      requestAnimationFrame(() => {
+        indicator.style.left = `${newLeft}px`;
+        indicator.style.transition = 'left 0.3s ease-in-out';
+      });
+    }
+  }
 });
 
-window.addEventListener("resize", updateIndicator); // Reposition on window resize
 
-function updateIndicator() {
-  const activeLink = document.querySelector('.footer-links a.active');
-  const indicator = document.querySelector('.indicator');
 
-  if (activeLink && indicator) {
-    const linkRect = activeLink.getBoundingClientRect();
-    const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
-    indicator.style.left = `${newLeft}px`;
-  }
-}
+
+
+
+
+
 
 
 
