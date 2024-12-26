@@ -214,9 +214,9 @@ body.dark-theme .footer-links a {
     color: #fff;
 }
 
-body.dark-theme .projects-container .project h3,
-body.dark-theme .projects-container .project p,
-body.dark-theme .projects-container .project .project-link {
+body.dark-theme .project h3,
+body.dark-theme .project p,
+body.dark-theme .project-link {
     color: #fff;
 }
 
