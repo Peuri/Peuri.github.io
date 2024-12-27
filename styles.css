@@ -88,6 +88,42 @@ nav {
     opacity: 0.8;
 }
 
+.language-toggle {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.language-toggle button {
+    border: none;
+    background: none;
+    font-size: 1em;
+    color: inherit;
+    cursor: pointer;
+    padding: 5px 10px;
+    transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.language-toggle button:hover {
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+.language-toggle span {
+    font-size: 1em;
+    color: inherit;
+}
+
+@media (max-width: 768px) {
+    .language-toggle button {
+        font-size: 0.9em;
+        padding: 5px;
+    }
+
+    .language-toggle span {
+        font-size: 0.9em;
+    }
+}
 
 .content {
     flex-grow: 1;

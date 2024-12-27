@@ -40,19 +40,24 @@
     <div class="nav-container">
         <h1>Petteri Peuri</h1>
         <div class="nav-details">
-        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="theme-dot"></button>
+            <div class="language-toggle">
+            <button id="lang-fi" class="lang-toggle" onclick="loadTranslations('fi')">FI</button>
+                <span>|</span>
+            <button id="lang-en" class="lang-toggle" onclick="loadTranslations('en')">EN</button>
+            </div>
+            <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="theme-dot"></button>
             <div id="time"></div>
-
         </div>
     </div>
 </nav>
 
+
     <div class="content page-container">
 
-    <p>Hi! I'm a 34-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy staying active, beekeeping, and boating.
+    <p id="intro">Hi! I'm a 34-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy staying active, beekeeping, and boating.
     </div>
 <div class="skills-tools page-container">
-    <h1>Skills & Tools</h1>
+    <h1 id="skillsTitle">Skills & Tools</h1>
     <div class="skills-grid">
         <div class="skill-box">
             Python
@@ -285,6 +290,38 @@ function toggleTheme() {
             box.style.animationDelay = `${index * 0.2}s`;
         });
     });
+
+
+
+    async function loadTranslations(lang) {
+    try {
+        const response = await fetch(`translations/${lang}.json`);
+        if (!response.ok) throw new Error(`Failed to load ${lang} translations`);
+
+        const translations = await response.json();
+
+        // Map translations to the page
+        document.getElementById("intro").textContent = translations.intro;
+        document.getElementById("skillsTitle").textContent = translations.skillsTitle;
+
+        // Store the user's language preference
+        localStorage.setItem("language", lang);
+
+        // Highlight the active language button
+        document.querySelectorAll(".lang-toggle").forEach(btn => {
+            btn.classList.toggle("active", btn.id === `lang-${lang}`);
+        });
+    } catch (error) {
+        console.error("Error loading translations:", error);
+    }
+}
+
+// Load user's language preference on page load
+window.onload = () => {
+    const userLang = localStorage.getItem("language") || "en";
+    loadTranslations(userLang);
+};
+
 </script>
 
 

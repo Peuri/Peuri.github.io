@@ -37,7 +37,7 @@
 
 <nav>
     <div class="nav-container">
-        <h1>Petteri Peuri</h1>
+        <h1 id="contact">Petteri Peuri / Contact</h1>
         <div class="nav-details">
         <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="theme-dot"></button>
             <div id="time"></div>
@@ -48,8 +48,8 @@
 
     <div class="content page-container">
         <div class="contact">
-<p>I'm always open to new opportunities and offer services including:</p>
-<ul>
+<p id="servicesIntro">I'm always open to new opportunities and offer services including:</p>
+<ul id="servicesList">
     <li>Custom websites</li>
     <li>SEO and speed optimization</li>
     <li>Responsive design</li>
@@ -57,7 +57,7 @@
     <li>Ongoing site maintenance and support</li>
 </ul>
 
-<p>Whether you're looking for a custom website or need your site's speed and SEO optimized, I'm here to help. If you have a project in mind or need assistance with your website, don't hesitate to reach out. Let's connect and discuss how we can collaborate to bring your project to life and ensure its success.
+<p id="servicesOutro">Whether you're looking for a custom website or need your site's speed and SEO optimized, I'm here to help. If you have a project in mind or need assistance with your website, don't hesitate to reach out. Let's connect and discuss how we can collaborate to bring your project to life and ensure its success.
 </p>
 
         </div>
@@ -224,6 +224,51 @@ function toggleTheme() {
             box.style.animationDelay = `${index * 0.2}s`;
         });
     });
+
+
+
+async function loadTranslations(lang) {
+    try {
+        const response = await fetch(`translations/${lang}.json`);
+        if (!response.ok) throw new Error(`Failed to load ${lang} translations`);
+
+        const translations = await response.json();
+
+        // Map translations to the page
+        document.getElementById("contact").textContent = translations.contact;
+        document.getElementById("servicesIntro").textContent = translations.servicesIntro;
+
+        // Clear existing list items
+        const servicesList = document.getElementById("servicesList");
+        servicesList.innerHTML = '';
+
+        // Add each service from translations.servicesList as a list item
+        translations.servicesList.forEach(service => {
+            const listItem = document.createElement('li');
+            listItem.textContent = service;
+            servicesList.appendChild(listItem);
+        });
+
+        document.getElementById("servicesOutro").textContent = translations.servicesOutro;
+
+        // Store the user's language preference
+        localStorage.setItem("language", lang);
+
+        // Highlight the active language button
+        document.querySelectorAll(".lang-toggle").forEach(btn => {
+            btn.classList.toggle("active", btn.id === `lang-${lang}`);
+        });
+    } catch (error) {
+        console.error("Error loading translations:", error);
+    }
+}
+
+// Load user's language preference on page load
+window.onload = () => {
+    const userLang = localStorage.getItem("language") || "en";
+    loadTranslations(userLang);
+};
+
 </script>
 
 </body>
