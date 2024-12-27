@@ -35,13 +35,16 @@
 
 <body>
 
-<nav>
+<nav aria-label="Main navigation">
     <div class="nav-container">
         <h1 id="työ">Petteri Peuri / Work</h1>
         <div class="nav-details">
         <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="theme-dot"></button>
-            <div id="time"></div>
-
+<div id="time"
+     role="timer"
+     aria-label="Current time in Helsinki"
+     aria-live="polite">
+</div>
         </div>
     </div>
 </nav>

@@ -36,17 +36,21 @@
 <body>
 
 
-<nav>
+<nav aria-label="Main navigation">
     <div class="nav-container">
         <h1>Petteri Peuri</h1>
         <div class="nav-details">
             <div class="language-toggle">
-            <button id="lang-fi" class="lang-toggle" onclick="loadTranslations('fi')">FI</button>
+<button id="lang-fi" class="lang-toggle" onclick="loadTranslations('fi')" aria-label="Switch language to Finnish" aria-pressed="false">FI</button>
                 <span>|</span>
-            <button id="lang-en" class="lang-toggle" onclick="loadTranslations('en')">EN</button>
+<button id="lang-en" class="lang-toggle" onclick="loadTranslations('en')" aria-label="Switch language to English" aria-pressed="false">EN</button>
             </div>
             <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="theme-dot"></button>
-            <div id="time"></div>
+<div id="time"
+     role="timer"
+     aria-label="Current time in Helsinki"
+     aria-live="polite">
+</div>
         </div>
     </div>
 </nav>
@@ -58,7 +62,7 @@
     </div>
 <div class="skills-tools page-container">
     <h1 id="skillsTitle">Skills & Tools</h1>
-    <div class="skills-grid">
+    <div class="skills-grid" aria-label="Technical skills">
         <div class="skill-box">
             Python
             <span class="tooltip">A versatile programming language widely used for web development, data science, and automation.</span></div>
@@ -321,6 +325,15 @@ window.onload = () => {
     const userLang = localStorage.getItem("language") || "en";
     loadTranslations(userLang);
 };
+
+    function togglePressedState(language) {
+    // Reset both buttons to aria-pressed="false"
+    document.getElementById("lang-fi").setAttribute("aria-pressed", "false");
+    document.getElementById("lang-en").setAttribute("aria-pressed", "false");
+
+    // Set the selected language button to aria-pressed="true"
+    document.getElementById(`lang-${language}`).setAttribute("aria-pressed", "true");
+}
 
 </script>
 
