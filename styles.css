@@ -199,8 +199,10 @@ body.dark-theme .skills-tools {
 
 body.dark-theme footer {
     background-color: rgba(51, 51, 51, 0.7);
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(1px);
 }
+
+
 
 
 body.dark-theme #theme-toggle {
@@ -214,6 +216,11 @@ body.dark-theme .footer-links a {
     color: #fff;
 }
 
+body.dark-theme .footer-links a:active,
+body.dark-theme .footer-links a:focus {
+    background-color: #333;
+    color: #fff;
+}
 body.dark-theme .project h3,
 body.dark-theme .project p,
 body.dark-theme .project-link {
@@ -232,6 +239,11 @@ body.dark-theme .contact-icons a i {
     transition: color 0.3s ease;
 }
 
+
+
+
+
+
 footer {
     color: #fff;
     padding: 20px 0;
@@ -239,9 +251,8 @@ footer {
     position: sticky;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.7);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(1px);
     z-index: 1000;
-    transition: background-color 0.3s ease;
 }
 
 .footer-links {
