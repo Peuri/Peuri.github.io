@@ -30,8 +30,8 @@ nav {
     justify-content: center;
     align-items: center;
     height: 80px;
-    border-bottom: 1px solid #ddd;
     flex-shrink: 0;
+
 }
 
 .nav-container {
@@ -40,14 +40,25 @@ nav {
     justify-content: space-between;
     margin: 0 auto;
     width: 40%;
+   position: relative;
 }
 
-
+.nav-container::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 1px;
+    background-color: #ddd;
+    width: 600px;
+}
 
 .nav-details {
     display: flex;
     align-items: center;
     gap: 20px;
+
 }
 
 .nav-container h1 {
@@ -55,6 +66,7 @@ nav {
     margin: 0;
     font-size: 1.3em;
     margin-left: -40px;
+
 }
 
 .nav-details span.timer {
@@ -63,12 +75,16 @@ nav {
 
 #theme-toggle {
     cursor: pointer;
-    background: none;
+    background-color: #000;
     border: none;
-    font-size: 1.2em;
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 #theme-toggle:hover {
+    transform: scale(1.2);
     opacity: 0.8;
 }
 
@@ -206,7 +222,8 @@ body.dark-theme footer {
 
 
 body.dark-theme #theme-toggle {
-    color: #fff;
+
+    background-color: #fff;
 }
 
 body.dark-theme .footer-links a {

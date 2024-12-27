@@ -40,8 +40,9 @@
     <div class="nav-container">
         <h1>Petteri Peuri</h1>
         <div class="nav-details">
+        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="theme-dot"></button>
             <div id="time"></div>
-        <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙</button>
+
         </div>
     </div>
 </nav>
@@ -239,34 +240,29 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
 
-    function loadTheme() {
-        const savedTheme = localStorage.getItem('theme');
-        const body = document.body;  // Changed to body
-        const themeButton = document.getElementById("theme-toggle");
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const body = document.body;
 
-        if (savedTheme === 'dark') {
-            body.classList.add("dark-theme");
-            themeButton.innerHTML = "🌞";
-        } else {
-            body.classList.remove("dark-theme");
-            themeButton.innerHTML = "🌙";
-        }
+    if (savedTheme === 'dark') {
+        body.classList.add("dark-theme");
+    } else {
+        body.classList.remove("dark-theme");
     }
+}
 
-    function toggleTheme() {
-        const body = document.body;  // Changed to body
-        const themeButton = document.getElementById("theme-toggle");
+function toggleTheme() {
+    const body = document.body;
 
-        body.classList.toggle("dark-theme");
+    body.classList.toggle("dark-theme");
 
-        if (body.classList.contains("dark-theme")) {
-            localStorage.setItem('theme', 'dark');
-            themeButton.innerHTML = "🌞";
-        } else {
-            localStorage.setItem('theme', 'light');
-            themeButton.innerHTML = "🌙";
-        }
+    if (body.classList.contains("dark-theme")) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
     }
+}
+
 
     // Update current time
     function updateTime() {
