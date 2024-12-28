@@ -348,6 +348,9 @@ footer {
     transition: left 0.3s ease-in-out;
 }
 
+ul#servicesList li::marker {
+    color: #007bff; 
+}
 
 
 .contact-icons {
