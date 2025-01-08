@@ -387,6 +387,10 @@ ul#servicesList li::marker {
     color: #333;
 }
 
+.contact-icons .instagram:hover {
+    color: #E4405F;
+}
+
 .contact-icons i {
     font-size: 28px;
     margin-bottom: 5px;

@@ -194,32 +194,34 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Set initial active state and position
+    // Function to initialize indicator
+    function initializeIndicator() {
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+                // Wait for next frame to ensure all styles are applied
+                requestAnimationFrame(() => {
+                    // Double RAF to ensure all layouts are complete
+                    requestAnimationFrame(() => {
+                        updateIndicator(link, false);
+                    });
+                });
+            }
+        });
+    }
+
+    // Set up click event listeners
     links.forEach(link => {
-        // Set initial active state
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-            // Initial positioning without animation
-            updateIndicator(link, false);
-        }
-
-        // Add click event listeners
         link.addEventListener('click', (e) => {
-            // Remove active class from all links
             links.forEach(l => l.classList.remove('active'));
-
-            // Add active class to clicked link
             link.classList.add('active');
-
-            // Update indicator position with animation
             updateIndicator(link, true);
 
-            // Small delay to allow animation to complete before page change
             if (!e.ctrlKey && !e.shiftKey && !e.metaKey && e.button !== 1) {
                 e.preventDefault();
                 setTimeout(() => {
                     window.location.href = link.href;
-                }, 300); // Match this with your CSS transition time
+                }, 300);
             }
         });
     });
@@ -229,10 +231,22 @@ document.addEventListener("DOMContentLoaded", () => {
         const activeLink = document.querySelector('.footer-links a.active');
         updateIndicator(activeLink, true);
     });
+
+    // Initialize after fonts are loaded to ensure correct positioning
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            initializeIndicator();
+        });
+    } else {
+        // Fallback for browsers that don't support document.fonts
+        window.addEventListener('load', () => {
+            initializeIndicator();
+        });
+    }
+
+    // Initial call in case everything is already loaded
+    initializeIndicator();
 });
-
-
-
 
 
 
