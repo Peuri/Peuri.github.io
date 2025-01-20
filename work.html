@@ -131,45 +131,53 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
-    // Set initial active state and position
+    // Function to initialize indicator
     function initializeIndicator() {
         links.forEach(link => {
             if (link.getAttribute('href') === currentPage) {
                 link.classList.add('active');
-                updateIndicator(link, false);
+                // Wait for next frame to ensure all styles are applied
+                requestAnimationFrame(() => {
+                    // Double RAF to ensure all layouts are complete
+                    requestAnimationFrame(() => {
+                        updateIndicator(link, false);
+                    });
+                });
             }
         });
     }
 
-    // Set up click event listeners for smooth transitions
+    // Set up click event listeners
     links.forEach(link => {
         link.addEventListener('click', (e) => {
             links.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
             updateIndicator(link, true);
 
-            // Prevent default and update page after animation
             if (!e.ctrlKey && !e.shiftKey && !e.metaKey && e.button !== 1) {
                 e.preventDefault();
+
+                // Wait for the transition to complete before navigating
                 setTimeout(() => {
                     window.location.href = link.href;
-                }, 300); // Match transition duration
+                }, 300); // Ensure this matches your CSS transition time (0.3s)
             }
         });
     });
 
-    // Handle window resize to update indicator position
+    // Update on window resize
     window.addEventListener("resize", () => {
         const activeLink = document.querySelector('.footer-links a.active');
         updateIndicator(activeLink, true);
     });
 
-    // Initialize indicator after fonts are loaded to ensure positioning
+    // Initialize after fonts are loaded to ensure correct positioning
     if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {
             initializeIndicator();
         });
     } else {
+        // Fallback for browsers that don't support document.fonts
         window.addEventListener('load', () => {
             initializeIndicator();
         });
@@ -178,6 +186,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial call in case everything is already loaded
     initializeIndicator();
 });
+
 
 
 
