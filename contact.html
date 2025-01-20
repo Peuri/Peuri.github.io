@@ -134,41 +134,53 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Set initial active state and position
+    function initializeIndicator() {
+        links.forEach(link => {
+            if (link.getAttribute('href') === currentPage) {
+                link.classList.add('active');
+                updateIndicator(link, false);
+            }
+        });
+    }
+
+    // Set up click event listeners for smooth transitions
     links.forEach(link => {
-        // Set initial active state
-        if (link.getAttribute('href') === currentPage) {
-            link.classList.add('active');
-            // Initial positioning without animation
-            updateIndicator(link, false);
-        }
-
-        // Add click event listeners
         link.addEventListener('click', (e) => {
-            // Remove active class from all links
             links.forEach(l => l.classList.remove('active'));
-
-            // Add active class to clicked link
             link.classList.add('active');
-
-            // Update indicator position with animation
             updateIndicator(link, true);
 
-            // Small delay to allow animation to complete before page change
+            // Prevent default and update page after animation
             if (!e.ctrlKey && !e.shiftKey && !e.metaKey && e.button !== 1) {
                 e.preventDefault();
                 setTimeout(() => {
                     window.location.href = link.href;
-                }, 300); // Match this with your CSS transition time
+                }, 300); // Match transition duration
             }
         });
     });
 
-    // Update on window resize
+    // Handle window resize to update indicator position
     window.addEventListener("resize", () => {
         const activeLink = document.querySelector('.footer-links a.active');
         updateIndicator(activeLink, true);
     });
+
+    // Initialize indicator after fonts are loaded to ensure positioning
+    if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+            initializeIndicator();
+        });
+    } else {
+        window.addEventListener('load', () => {
+            initializeIndicator();
+        });
+    }
+
+    // Initial call in case everything is already loaded
+    initializeIndicator();
 });
+
 
 
 
