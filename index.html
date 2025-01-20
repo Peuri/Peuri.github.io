@@ -168,14 +168,15 @@ document.addEventListener("DOMContentLoaded", () => {
             const linkRect = activeLink.getBoundingClientRect();
             const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
 
-            if (!animate) {
+            // Ensure smooth transition by setting it only when animating
+            if (animate) {
+                indicator.style.transition = 'left 0.3s ease-in-out';
+                indicator.style.left = `${newLeft}px`;
+            } else {
                 indicator.style.transition = 'none';
                 indicator.style.left = `${newLeft}px`;
                 // Force a reflow
                 indicator.offsetHeight;
-                indicator.style.transition = 'left 0.3s ease-in-out';
-            } else {
-                indicator.style.left = `${newLeft}px`;
             }
         }
     }
@@ -185,15 +186,17 @@ document.addEventListener("DOMContentLoaded", () => {
         links.forEach(link => {
             if (link.getAttribute('href') === currentPage) {
                 link.classList.add('active');
-                // Wait for next frame to ensure all styles are applied
-                requestAnimationFrame(() => {
-                    // Double RAF to ensure all layouts are complete
-                    requestAnimationFrame(() => {
-                        updateIndicator(link, false);
-                    });
-                });
+                // Position indicator without animation
+                updateIndicator(link, false);
             }
         });
+    }
+
+    // Delay the navigation to ensure smooth transition
+    function delayedNavigation(link) {
+        setTimeout(() => {
+            window.location.href = link.href;
+        }, 300); // Same as transition duration
     }
 
     // Set up click event listeners
@@ -201,15 +204,12 @@ document.addEventListener("DOMContentLoaded", () => {
         link.addEventListener('click', (e) => {
             links.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
-            updateIndicator(link, true);
+            updateIndicator(link, true); // Start indicator animation
 
+            // Prevent default navigation to wait for the animation
             if (!e.ctrlKey && !e.shiftKey && !e.metaKey && e.button !== 1) {
                 e.preventDefault();
-
-                // Wait for the transition to complete before navigating
-                setTimeout(() => {
-                    window.location.href = link.href;
-                }, 300); // Ensure this matches your CSS transition time (0.3s)
+                delayedNavigation(link);
             }
         });
     });
@@ -235,6 +235,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Initial call in case everything is already loaded
     initializeIndicator();
 });
+
 
 
 
