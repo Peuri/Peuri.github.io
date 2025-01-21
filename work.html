@@ -112,24 +112,44 @@ document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll('.footer-links a');
     const indicator = document.querySelector('.indicator');
     const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    let isAnimating = false;
 
     // Function to update indicator position
     function updateIndicator(activeLink, animate = true) {
-        if (activeLink && indicator) {
+        if (activeLink && indicator && !isAnimating) {
             const linkRect = activeLink.getBoundingClientRect();
             const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
 
-            // Ensure smooth transition by setting it only when animating
-            if (animate) {
-                indicator.style.transition = 'left 0.3s ease-in-out';
-                indicator.style.left = `${newLeft}px`;
-            } else {
-                indicator.style.transition = 'none';
-                indicator.style.left = `${newLeft}px`;
-                // Force a reflow
-                indicator.offsetHeight;
-            }
+            requestAnimationFrame(() => {
+                if (animate) {
+                    isAnimating = true;
+                    indicator.style.transition = 'left 0.3s ease-in-out';
+                    indicator.style.left = `${newLeft}px`;
+
+                    setTimeout(() => {
+                        isAnimating = false;
+                    }, 300);
+                } else {
+                    indicator.style.transition = 'none';
+                    indicator.style.left = `${newLeft}px`;
+                    // Force a reflow
+                    indicator.offsetHeight;
+                }
+            });
         }
+    }
+
+    // Debounce function for resize events
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
     }
 
     // Function to initialize indicator
@@ -153,9 +173,11 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set up click event listeners
     links.forEach(link => {
         link.addEventListener('click', (e) => {
+            if (isAnimating) return;
+
             links.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
-            updateIndicator(link, true); // Start indicator animation
+            updateIndicator(link, true);
 
             // Prevent default navigation to wait for the animation
             if (!e.ctrlKey && !e.shiftKey && !e.metaKey && e.button !== 1) {
@@ -165,21 +187,27 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     });
 
-    // Update on window resize
-    window.addEventListener("resize", () => {
+    // Update on window resize with debouncing
+    const debouncedUpdate = debounce(() => {
         const activeLink = document.querySelector('.footer-links a.active');
-        updateIndicator(activeLink, true);
-    });
+        updateIndicator(activeLink, false);
+    }, 100);
+
+    window.addEventListener("resize", debouncedUpdate);
 
     // Initialize after fonts are loaded to ensure correct positioning
     if (document.fonts && document.fonts.ready) {
         document.fonts.ready.then(() => {
-            initializeIndicator();
+            requestAnimationFrame(() => {
+                initializeIndicator();
+            });
         });
     } else {
         // Fallback for browsers that don't support document.fonts
         window.addEventListener('load', () => {
-            initializeIndicator();
+            requestAnimationFrame(() => {
+                initializeIndicator();
+            });
         });
     }
 
