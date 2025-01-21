@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Heebo';
+    src: url('fonts/Heebo-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-display: swap;
+}
+
+
 html, body {
     font-family: 'Heebo', sans-serif;
     height: 100%;
@@ -21,6 +29,10 @@ html, body {
     width: 0px; /* Hides the scrollbar */
     height: 0px; /* Hides horizontal scrollbar */
 }
+
+
+
+
 h1 {
     text-rendering: optimizeLegibility;
 }
@@ -185,6 +197,7 @@ nav {
     opacity: 0;
     transform: translateY(20px);
     animation: slideIn 0.8s ease-out forwards;
+    will-change: opacity, transform;
 }
 
 .skill-box:hover {
@@ -228,10 +241,7 @@ nav {
 
 
 
-.skill-box:hover {
-    background-color: #e0e0e0;
-    transform: translateY(-5px);
-}
+
 
 
 
@@ -240,10 +250,8 @@ body.dark-theme {
     color: #fff;
 }
 
-body.dark-theme nav {
-    background-color: #333;
-}
 
+body.dark-theme nav,
 body.dark-theme .content,
 body.dark-theme .skills-tools {
     background-color: #2a2a2a;
