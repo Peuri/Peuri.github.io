@@ -216,7 +216,7 @@ nav {
         text-align: center;
         padding: 5px;
         border-radius: 5px;
-        font-size: 1.6em;
+        font-size: 1em;
         opacity: 0;
         transition: opacity 0.3s;
         z-index: 1;
@@ -241,7 +241,11 @@ nav {
 
 
 
-
+@media (max-width: 768px) {
+    .skill-box .tooltip {
+        font-size: 14px;
+    }
+}
 
 
 
