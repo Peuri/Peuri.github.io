@@ -23,7 +23,6 @@ html, body {
     min-width: 600px;
     margin: 0 auto;
     flex-grow: 1;
-    background-color: #4c155c;
 }
 
 ::-webkit-scrollbar {
