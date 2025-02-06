@@ -67,11 +67,7 @@ nav {
 
 }
 
-@media (max-width: 800px) {
-    .nav-container::after {
-        min-width: unset;
-    }
-}
+
 
 
 .nav-details {
