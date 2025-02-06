@@ -63,8 +63,13 @@ nav {
     transform: translateX(-50%);
     height: 1px;
     background-color: #ddd;
-    width: 600px;
+    width: 100%;
+    min-width: 600px;
+    transition: width 0.3s ease;
+
 }
+
+
 
 .nav-details {
     display: flex;
@@ -77,9 +82,12 @@ nav {
     text-rendering: optimizeLegibility;
     margin: 0;
     font-size: 1.3em;
-    margin-left: -40px;
+    margin-left: 0%;
+    transition: margin-left 0.3s ease;
 
 }
+
+
 
 .nav-details span.timer {
     margin-left: auto;
@@ -443,9 +451,7 @@ ul#servicesList li::marker {
     .nav-container {
         width: 100%;
         padding: 0 10px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+
     }
 
     .page-container {
@@ -470,19 +476,8 @@ ul#servicesList li::marker {
         height: 60px;
     }
 
-        .nav-container h1 {
-        font-size: 1.2em;
-        margin-left: 0;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
 
-    .nav-details {
-        display: flex;
-        justify-content: flex-end;
-        align-items: center;
-    }
+
 
     .skills-tools h1 {
         font-size: 1.5em;
