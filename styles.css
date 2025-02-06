@@ -52,6 +52,8 @@ nav {
     justify-content: space-between;
     margin: 0 auto;
     width: 40%;
+    min-width: 600px;   /* match page-container */
+    max-width: 1200px;  /* match page-container */
    position: relative;
 }
 
@@ -59,8 +61,8 @@ nav {
     content: '';
     position: absolute;
     bottom: -20px;
-    left: 50%;
-    transform: translateX(-50%);
+    left: 0;
+    transform: none;
     height: 1px;
     background-color: #ddd;
     width: 100%;
@@ -81,8 +83,7 @@ nav {
     text-rendering: optimizeLegibility;
     margin: 0;
     font-size: 1.3em;
-    margin-left: 0%;
-    transition: margin-left 0.3s ease;
+    transition: all 0.3s ease;
 
 }
 
@@ -449,6 +450,7 @@ ul#servicesList li::marker {
 @media (max-width: 768px) {
     .nav-container {
         width: 100%;
+        min-width: unset;
         padding: 0 10px;
 
     }
