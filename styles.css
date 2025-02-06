@@ -64,11 +64,14 @@ nav {
     height: 1px;
     background-color: #ddd;
     width: 100%;
-    min-width: 600px;
-    transition: width 0.3s ease;
 
 }
 
+@media (max-width: 800px) {
+    .nav-container::after {
+        min-width: unset;
+    }
+}
 
 
 .nav-details {
