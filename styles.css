@@ -23,6 +23,8 @@ html, body {
     min-width: 600px;
     margin: 0 auto;
     flex-grow: 1;
+    background-color: #333887;
+
 }
 
 ::-webkit-scrollbar {
@@ -58,7 +60,6 @@ nav {
     min-width: 600px;   /* match page-container */
     max-width: 1200px;  /* match page-container */
    position: relative;
-    background-color: #333887;
 }
 
 .nav-container::after {
