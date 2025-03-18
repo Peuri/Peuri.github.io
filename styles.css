@@ -315,7 +315,9 @@ body.dark-theme .contact-icons a i {
     transition: color 0.3s ease;
 }
 
-
+body.dark-theme .footer-links a:hover {
+    color: #f4b400;
+}
 
 
 
@@ -580,3 +582,24 @@ ul#servicesList li::marker {
     }
 }
 
+.name-link {
+    text-decoration: none;
+    color: inherit;
+    transition: color 0.3s ease;
+}
+
+.name-link:hover h1 {
+    color: #007bff;
+}
+
+.name-link h1 {
+    color: #000;
+}
+
+body.dark-theme .name-link h1 {
+    color: #fff;
+}
+
+body.dark-theme .name-link:hover h1 {
+    color: #007bff;
+}
