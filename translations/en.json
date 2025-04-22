@@ -1,0 +1,22 @@
+{
+    "intro": "Hi! I'm a 33-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy physical activities such as tennis and weightlifting, as well as beekeeping and boating.",
+    "skillsTitle": "Skills & Tools",
+	"contact": "Petteri Peuri / Contact",
+	"työ": "Petteri Peuri / Work",
+    "servicesIntro": "I'm always open to new opportunities and offer services including:",
+    "servicesList": [
+        "Custom websites",
+        "SEO and speed optimization",
+        "Responsive design",
+        "User analytics",
+        "Ongoing site maintenance and support"
+    ],
+    "servicesOutro": "Whether you're looking for a custom website or need your site's speed and SEO optimized, I'm here to help. If you have a project in mind or need assistance with your website, don't hesitate to reach out. Let's connect and discuss how we can collaborate to bring your project to life and ensure its success.",
+  "ukkoVelhoIntro": "UkkoVelho is an advanced weightlifting app designed to help fitness enthusiasts track their workouts and monitor their progress. With a seamless and responsive design, the app provides users with real-time insights into their training data, allowing them to visualize improvements through interactive charts. Built with a Python-based backend, the app offers strong performance and scalability, making it an ideal tool for tracking strength and fitness goals across different devices.",
+    "visitUkkoVelho": "Visit website",
+	"portfolioIntro": "My personal portfolio to demonstrate my skills, experience, and past work. This website serves as a showcase of my journey as a developer.",
+	"viewPortfolioGitHub": "View Portfolio on GitHub",
+  "kahviintro": "Simple website to track local coffee prices.",
+  "visitkahvi": "Visit website"
+
+}

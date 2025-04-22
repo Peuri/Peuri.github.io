@@ -1,0 +1,24 @@
+{
+    "intro": "Hei! Olen 33-vuotias Full-Stack Verkkokehittäjä Turusta. Minulla on kahden vuoden kokemus modernien, käyttäjäystävällisten verkkosivustojen ja sovellusten luomisesta. Erityisosaamiseni kattaa front-end ja back-end kehityksen, pilviteknologiat, SEO:n ja verkkosivuston suorituskyvyn optimoinnin. Työn ulkopuolella nautin fyysisistä aktiviteeteista, kuten tenniksestä ja painonnostosta, sekä mehiläistenhoidosta ja veneilystä.",
+    "skillsTitle": "Taidot & Työkalut",
+	"contact": "Petteri Peuri / Yhteydenotto",
+	"työ": "Petteri Peuri / Työ",
+    "servicesIntro": "Olen aina avoin uusille mahdollisuuksille ja tarjoan palveluja, kuten:",
+    "servicesList": [
+        "Räätälöidyt verkkosivustot",
+        "SEO ja nopeusoptimointi",
+        "Responsiivinen suunnittelu",
+        "Käyttäjäanalytiikka",
+        "Jatkuva sivuston ylläpito ja tuki"
+    ],
+    "servicesOutro": "Olitpa etsimässä räätälöityä verkkosivustoa tai haluat optimoida sivustosi nopeuden ja SEO:n, olen täällä auttamassa. Jos sinulla on projekti mielessä tai tarvitset apua verkkosivustosi kanssa, älä epäröi ottaa yhteyttä. Ollaan yhteydessä ja keskustellaan siitä, miten voimme tehdä yhteistyötä hankkeesi toteuttamiseksi ja  sen onnistumisen varmistamiseksi.",
+"ukkoVelhoIntro": "UkkoVelho on edistynyt painonnostosovellus, joka on suunniteltu auttamaan kuntoilijoita seuraamaan harjoituksiaan ja tarkkailemaan edistymistään. Sujuvalla ja responsiivisella suunnittelulla sovellus tarjoaa käyttäjille reaaliaikaisia näkymiä heidän harjoitustietoihinsa, jolloin he voivat visualisoida parannuksia interaktiivisten kaavioiden kautta. Python-pohjaisella taustalla rakennettu sovellus tarjoaa vahvaa suorituskykyä ja skaalautuvuutta, tehden siitä ihanteellisen työkalun voiman ja kunnon tavoitteiden seuraamiseen eri laitteilla.",
+ "visitUkkoVelho": "Vieraile nettisivuilla",
+ "portfolioIntro": "Henkilökohtainen portfolioni, jossa esittelen taitojani, kokemustani ja aiempaa työtäni. Tämä verkkosivusto toimii matkani näyttämönä kehittäjänä.",
+ "viewPortfolioGitHub": "Katso portfolio GitHubissa",
+  "kahviintro": "Yksinkertainen sivu kahvien hinnanseurantaan.",
+  "visitkahvi": "Vieraile nettisivuilla"
+
+ }	
+
+
