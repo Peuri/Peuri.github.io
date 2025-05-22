@@ -134,8 +134,9 @@ document.addEventListener("DOMContentLoaded", () => {
 function updateIndicator(activeLink, animate = true) {
     if (activeLink && indicator && !isAnimating) {
         const linkRect = activeLink.getBoundingClientRect();
-        const containerRect = indicator.parentElement.getBoundingClientRect();
-        const offsetX = linkRect.left - containerRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
+        const parentRect = indicator.offsetParent.getBoundingClientRect(); // safer than parentElement
+
+        const offsetX = linkRect.left + linkRect.width / 2 - parentRect.left - indicator.offsetWidth / 2;
 
         requestAnimationFrame(() => {
             if (animate) {
@@ -149,12 +150,12 @@ function updateIndicator(activeLink, animate = true) {
             } else {
                 indicator.style.transition = 'none';
                 indicator.style.transform = `translateX(${offsetX}px)`;
-                // Force a reflow
-                indicator.offsetHeight;
+                indicator.offsetHeight; // force reflow
             }
         });
     }
 }
+
 
 
     // Debounce function for resize events
