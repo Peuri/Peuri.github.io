@@ -180,15 +180,20 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Function to initialize indicator
-    function initializeIndicator() {
-        links.forEach(link => {
-            if (link.getAttribute('href') === currentPage) {
-                link.classList.add('active');
-                // Position indicator without animation
-                updateIndicator(link, false);
-            }
-        });
-    }
+function initializeIndicator() {
+    links.forEach(link => {
+        if (link.getAttribute('href') === currentPage) {
+            link.classList.add('active');
+            requestAnimationFrame(() => {
+                updateIndicator(link, false); // position first
+                requestAnimationFrame(() => {
+                    indicator.style.opacity = '1'; // make visible in next frame
+                });
+            });
+        }
+    });
+}
+
 
     // Delay the navigation to ensure smooth transition
     function delayedNavigation(link) {
