@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
+<script>
+    // Immediate theme check
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+</script>
     <link rel="canonical" href="https://peuri.fi/work.html">
     <meta charset="UTF-8">
     <meta name="msvalidate.01" content="C199C58C0B1359BEC8C9052B5951AD6F" />
@@ -30,12 +36,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </noscript>
 
-<script>
-    // Immediate theme check
-    if (localStorage.getItem('theme') === 'dark') {
-        document.body.classList.add('dark-theme');
-    }
-</script>
+
 <script>
     !function(t,e){var o,n,p,r;e.__SV||(window.posthog=e,e._i=[],e.init=function(i,s,a){function g(t,e){var o=e.split(".");2==o.length&&(t=t[o[0]],e=o[1]),t[e]=function(){t.push([e].concat(Array.prototype.slice.call(arguments,0)))}}(p=t.createElement("script")).type="text/javascript",p.crossOrigin="anonymous",p.async=!0,p.src=s.api_host.replace(".i.posthog.com","-assets.i.posthog.com")+"/static/array.js",(r=t.getElementsByTagName("script")[0]).parentNode.insertBefore(p,r);var u=e;for(void 0!==a?u=e[a]=[]:a="posthog",u.people=u.people||[],u.toString=function(t){var e="posthog";return"posthog"!==a&&(e+="."+a),t||(e+=" (stub)"),e},u.people.toString=function(){return u.toString(1)+".people (stub)"},o="init capture register register_once register_for_session unregister unregister_for_session getFeatureFlag getFeatureFlagPayload isFeatureEnabled reloadFeatureFlags updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures on onFeatureFlags onSessionId getSurveys getActiveMatchingSurveys renderSurvey canRenderSurvey identify setPersonProperties group resetGroups setPersonPropertiesForFlags resetPersonPropertiesForFlags setGroupPropertiesForFlags resetGroupPropertiesForFlags reset get_distinct_id getGroups get_session_id get_session_replay_url alias set_config startSessionRecording stopSessionRecording sessionRecordingStarted captureException loadToolbar get_property getSessionProperty createPersonProfile opt_in_capturing opt_out_capturing has_opted_in_capturing has_opted_out_capturing clear_opt_in_out_capturing debug getPageViewId captureTraceFeedback captureTraceMetric".split(" "),n=0;n<o.length;n++)g(u,o[n]);e._i.push([i,s,a])},e.__SV=1)}(document,window.posthog||[]);
     posthog.init('phc_6TqC90GWpmpym0bWaoG0aZpJfyeF7twwk3r9O2OcaZU', {
@@ -138,33 +139,35 @@
 document.addEventListener("DOMContentLoaded", () => {
     const links = document.querySelectorAll('.footer-links a');
     const indicator = document.querySelector('.indicator');
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+    const currentPage = window.location.pathname.split('/').pop() || 'work.html';
     let isAnimating = false;
 
     // Function to update indicator position
-    function updateIndicator(activeLink, animate = true) {
-        if (activeLink && indicator && !isAnimating) {
-            const linkRect = activeLink.getBoundingClientRect();
-            const newLeft = linkRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
+function updateIndicator(activeLink, animate = true) {
+    if (activeLink && indicator && !isAnimating) {
+        const linkRect = activeLink.getBoundingClientRect();
+        const containerRect = indicator.parentElement.getBoundingClientRect();
+        const offsetX = linkRect.left - containerRect.left + (linkRect.width / 2) - (indicator.offsetWidth / 2);
 
-            requestAnimationFrame(() => {
-                if (animate) {
-                    isAnimating = true;
-                    indicator.style.transition = 'left 0.3s ease-in-out';
-                    indicator.style.left = `${newLeft}px`;
+        requestAnimationFrame(() => {
+            if (animate) {
+                isAnimating = true;
+                indicator.style.transition = 'transform 0.3s ease-in-out';
+                indicator.style.transform = `translateX(${offsetX}px)`;
 
-                    setTimeout(() => {
-                        isAnimating = false;
-                    }, 300);
-                } else {
-                    indicator.style.transition = 'none';
-                    indicator.style.left = `${newLeft}px`;
-                    // Force a reflow
-                    indicator.offsetHeight;
-                }
-            });
-        }
+                setTimeout(() => {
+                    isAnimating = false;
+                }, 300);
+            } else {
+                indicator.style.transition = 'none';
+                indicator.style.transform = `translateX(${offsetX}px)`;
+                // Force a reflow
+                indicator.offsetHeight;
+            }
+        });
     }
+}
+
 
     // Debounce function for resize events
     function debounce(func, wait) {
