@@ -1,3 +1,6 @@
+
+
+
 @font-face {
     font-family: 'Heebo';
     src: url('fonts/Heebo-VariableFont_wght.ttf') format('truetype');
@@ -15,8 +18,12 @@ html, body {
     flex-direction: column;
     width: 100%;
     overflow-x: hidden;
+    min-height: 100vh;
 }
 
+main {
+  flex-grow: 1; /* Pushes footer to bottom when content is short */
+}
 .page-container {
     width: 40%;
     max-width: 1200px;
@@ -329,11 +336,15 @@ footer {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    position: sticky;
+    position: relative;
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(1px);
     z-index: 1000;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .footer-links {
@@ -343,6 +354,8 @@ footer {
     display: flex;
     justify-content: center;
     gap: 30px;
+    position: relative; /* important */
+
 }
 
 .footer-links li {
@@ -368,18 +381,18 @@ footer {
     font-size: 1.5em;
 }
 
+/* Updated .indicator CSS */
 .indicator {
-    position: absolute;
-    bottom: 5px;
-    width: 8px;
-    height: 8px;
-    background-color: #007bff;
-    border-radius: 50%;
-    left: 0; /* fix left */
-    transform: translateX(0); /* this will be animated */
-    opacity: 0;
-    transition: transform 0.3s ease-in-out, opacity 0.155s ease-in 0.05s;
-    will-change: transform;
+  position: absolute;
+  left: 0; /* Start at left edge */
+  width: 8px;
+  height: 8px;
+  background-color: #007bff;
+  border-radius: 50%;
+  opacity: 1;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+
 }
 
 
