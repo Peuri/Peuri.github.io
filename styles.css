@@ -584,13 +584,13 @@ body.dark-theme .name-link:hover h1 {
 
 footer {
   position: fixed;
-  bottom: 0px;  /* Pull it 20px higher than the absolute bottom, adjust as needed */
+  bottom: 0px;
   left: 0;
   width: 100%;
   background-color: #fff; /* or whatever bg you want */
   z-index: 1000; /* on top of other content */
   box-shadow: 0 -2px 5px rgba(0,0,0,0.1); /* subtle shadow */
-  height: 60px; /* explicit footer height */
+  height: 40px; /* explicit footer height */
 
 }
 
