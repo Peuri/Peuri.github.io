@@ -1,5 +1,5 @@
 {
-  "intro": "Hei! Olen 33-vuotias full-stack web-kehittäjä Suomesta, jolla on kahden vuoden kokemus modernien, käyttäjäystävällisten verkkosivustojen ja sovellusten luomisesta. Osaamiseni kattaa front-end ja back-end kehityksen, pilvipalvelut, SEO:n ja verkkosivujen suorituskyvyn optimoinnin. Vapaa-ajallani nautin liikunnasta kuten tenniksestä ja painonnostosta, sekä mehiläistarhauksen ja veneilyn parissa.",
+  "intro": "Hei! Olen 33-vuotias full-stack web-kehittäjä Suomesta, jolla on kahden vuoden kokemus modernien, käyttäjäystävällisten verkkosivustojen ja sovellusten luomisesta. Osaamiseni kattaa front-end ja back-end kehityksen, pilvipalvelut, SEO:n ja verkkosivujen suorituskyvyn optimoinnin. Vapaa-ajallani nautin liikunnasta kuten tenniksestä ja painonnostosta, sekä veneilystä.",
   "skillsTitle": "Taidot ja työkalut",
   "contact": "Petteri Peuri / Yhteystiedot",
   "työ": "Petteri Peuri / Työt",
@@ -16,6 +16,6 @@
   "visitUkkoVelho": "Vieraile UkkoVelhossa",
   "portfolioIntro": "Henkilökohtainen portfolioni taitojeni, kokemukseni ja aiemman työni esittelemiseksi. Tämä verkkosivusto toimii näyteikkunana matkalleni kehittäjänä.",
   "viewPortfolioGitHub": "Katso Portfolio GitHubissa",
-  "kahviIntro": "Yksinkertainen verkkosivusto paikallisten kahvihintojen seuraamiseen.",
+  "kahviIntro": "Yksinkertainen ja helppokäyttöinen verkkosivusto paikallisten kahvihintojen seuraamiseen ja vertailuun. Sivusto kerää tietoja sekä pakatuista kauppakahveista että kahviloiden juomien hinnoista, auttaen käyttäjiä löytämään parhaat tarjoukset lähialueelta. Sivulla on selkeä käyttöliittymä, reaaliaikaiset hintapäivitykset sekä helppo hinnoittelun lähetys Cloudflare Workersin ja kevyen SQLite-tietokannan avulla.",
   "visitKahvi": "Vieraile sivustolla"
 }

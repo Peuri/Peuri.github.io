@@ -65,7 +65,7 @@
 
 <main id="main-content">
     <div class="content page-container">
-        <p id="intro">Hi! I'm a 33-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy physical activities such as tennis and weightlifting, as well as beekeeping and boating.
+        <p id="intro">Hi! I'm a 33-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy physical activities such as tennis and weightlifting, as well as boating.
         </p>
     </div>
     <div class="skills-tools page-container">
@@ -203,10 +203,8 @@ async function loadPage(url, push = true) {
             history.pushState({ url }, '', url);
         }
 
-        // Add this line to update the H1
         updatePageTitle();
 
-        // Wait for DOM to be updated before applying translations
         await new Promise(resolve => setTimeout(resolve, 10));
 
         if (window.loadTranslations) {
@@ -215,8 +213,7 @@ async function loadPage(url, push = true) {
         }
         updateTime();
 
-    } catch (err) {
-        console.error(err);
+    } catch {
         mainContent.innerHTML = '<p>Failed to load content. Please try again later.</p>';
     }
 }
@@ -233,22 +230,17 @@ function updateIndicator(activeLink, animate = true) {
     const finalTranslateX = targetCenterRelativeToFooter - (indicator.offsetWidth / 2);
 
     if (animate) {
-        // Ensure transition is enabled for animation
         indicator.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
         indicator.style.transform = `translateX(${finalTranslateX}px)`;
     } else {
-        // Disable transition for immediate positioning
         indicator.style.transition = 'none';
         indicator.style.transform = `translateX(${finalTranslateX}px)`;
         indicator.style.bottom = '16px';
-        // Force reflow to ensure the transition: none takes effect
         indicator.offsetHeight;
-        // Re-enable transition for future animations
         indicator.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
     }
 }
 
-// Initialize page on load
 function initializePage() {
     let currentPath = location.pathname.split('/').pop() || 'index.html';
     if (!['index.html', 'work.html', 'contact.html'].includes(currentPath)) {
@@ -256,15 +248,12 @@ function initializePage() {
         history.replaceState({ url: currentPath }, '', currentPath);
     }
 
-    // Set active class immediately for initial page
     footerLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === `/${currentPath}`);
     });
 
-    // Add this line to set initial H1 title
     updatePageTitle();
 
-    // Wait for full layout to be complete before positioning indicator
     requestAnimationFrame(() => {
         requestAnimationFrame(() => {
             const activeLink = document.querySelector('.footer-links a.active');
@@ -279,54 +268,43 @@ function initializePage() {
     setInterval(updateTime, 1000);
 }
 
-// Use DOMContentLoaded to ensure everything is ready
 document.addEventListener('DOMContentLoaded', initializePage);
 
-// Fallback for older browsers or if DOMContentLoaded already fired
 if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializePage);
 } else {
     initializePage();
 }
 
-// Click event listeners for navigation - SINGLE SET OF LISTENERS
 footerLinks.forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
 
-        // Update active state immediately
         footerLinks.forEach(l => l.classList.remove('active'));
         link.classList.add('active');
 
-        // Animate the indicator
         updateIndicator(link, true);
 
-        // Then load the page
         loadPage(link.getAttribute('href'));
     });
 });
 
-// Update the popstate event handler too
 window.addEventListener('popstate', event => {
     const url = event.state?.url || 'index.html';
 
-    // Update active state for back/forward navigation
     footerLinks.forEach(link => {
         link.classList.toggle('active', link.getAttribute('href') === url);
     });
 
-    // Update indicator
     const activeLink = document.querySelector('.footer-links a.active');
     if (activeLink) {
         updateIndicator(activeLink, true);
     }
 
     loadPage(url, false);
-    // Add this line for browser back/forward
     updatePageTitle();
 });
 
-// Theme toggle functions
 function loadTheme() {
     const savedTheme = localStorage.getItem('theme');
     const body = document.body;
@@ -347,7 +325,6 @@ function toggleTheme() {
     }
 }
 
-// Update time display
 function updateTime() {
     const timeElement = document.getElementById("time");
     if (timeElement) {
@@ -357,20 +334,16 @@ function updateTime() {
     }
 }
 
-// Handle window resize - reposition indicator
 window.addEventListener('resize', () => {
     const activeLink = document.querySelector('.footer-links a.active');
     if (activeLink) {
-        // Use a small delay to ensure layout has settled after resize
         setTimeout(() => {
             updateIndicator(activeLink, false);
         }, 100);
     }
 });
 
-// Enhanced loadTranslations function with debugging
 async function loadTranslations(lang) {
-  console.log('🔄 Loading translations for:', lang);
   localStorage.setItem('language', lang);
 
   try {
@@ -380,272 +353,73 @@ async function loadTranslations(lang) {
     }
 
     const translations = await response.json();
-    console.log('📄 Loaded translations:', translations);
 
-    // Update language toggle buttons
     document.querySelectorAll('.lang-toggle').forEach(btn => {
       btn.setAttribute('aria-pressed', btn.id === `lang-${lang}`);
       btn.classList.toggle('active', btn.id === `lang-${lang}`);
     });
 
-    // Index page translations
     const intro = document.getElementById('intro');
     if (intro && translations.intro) {
-      console.log('✅ Updating intro');
       intro.textContent = translations.intro;
     }
 
     const skillsTitle = document.getElementById('skillsTitle');
     if (skillsTitle && translations.skillsTitle) {
-      console.log('✅ Updating skillsTitle');
       skillsTitle.textContent = translations.skillsTitle;
     }
-
-    // Contact page translations
-    if (translations.contact) {
-      console.log('🔍 Checking contact page elements...');
-
-      const servicesIntro = document.getElementById('servicesIntro');
-      if (servicesIntro && translations.contact.servicesIntro) {
-        console.log('✅ Updating servicesIntro');
-        servicesIntro.textContent = translations.contact.servicesIntro;
-      } else {
-        console.log('❌ servicesIntro not found or no translation');
-      }
-
-      const servicesOutro = document.getElementById('servicesOutro');
-      if (servicesOutro && translations.contact.servicesOutro) {
-        console.log('✅ Updating servicesOutro');
-        servicesOutro.textContent = translations.contact.servicesOutro;
-      } else {
-        console.log('❌ servicesOutro not found or no translation');
-      }
-
-      // Update services list items
-      const servicesList = document.getElementById('servicesList');
-      if (servicesList && translations.contact.servicesList) {
-        console.log('✅ Updating servicesList');
-        const listItems = servicesList.querySelectorAll('li');
-        console.log('📋 Found list items:', listItems.length);
-        translations.contact.servicesList.forEach((text, index) => {
-          if (listItems[index]) {
-            listItems[index].textContent = text;
-            console.log(`✅ Updated list item ${index}: ${text}`);
-          }
-        });
-      } else {
-        console.log('❌ servicesList not found or no translation');
-      }
-    }
-
-    // Work page translations
-    if (translations.work) {
-      console.log('🔍 Checking work page elements...');
-
-      // UkkoVelho project
-      const ukkoVelhoIntro = document.getElementById('ukkoVelhoIntro');
-      if (ukkoVelhoIntro && translations.work.ukkoVelho?.description) {
-        console.log('✅ Updating ukkoVelhoIntro');
-        ukkoVelhoIntro.textContent = translations.work.ukkoVelho.description;
-      } else {
-        console.log('❌ ukkoVelhoIntro not found or no translation');
-      }
-
-      const visitUkkoVelho = document.getElementById('visitUkkoVelho');
-      if (visitUkkoVelho && translations.work.ukkoVelho?.linkText) {
-        console.log('✅ Updating visitUkkoVelho');
-        visitUkkoVelho.textContent = translations.work.ukkoVelho.linkText;
-      } else {
-        console.log('❌ visitUkkoVelho not found or no translation');
-      }
-
-      // Portfolio project
-      const portfolioIntro = document.getElementById('portfolioIntro');
-      if (portfolioIntro && translations.work.portfolio?.description) {
-        console.log('✅ Updating portfolioIntro');
-        portfolioIntro.textContent = translations.work.portfolio.description;
-      } else {
-        console.log('❌ portfolioIntro not found or no translation');
-      }
-
-      const viewPortfolioGitHub = document.getElementById('viewPortfolioGitHub');
-      if (viewPortfolioGitHub && translations.work.portfolio?.linkText) {
-        console.log('✅ Updating viewPortfolioGitHub');
-        viewPortfolioGitHub.textContent = translations.work.portfolio.linkText;
-      } else {
-        console.log('❌ viewPortfolioGitHub not found or no translation');
-      }
-
-      // Sumpille/Kahvi project
-      const kahviIntro = document.getElementById('kahviintro');
-      if (kahviIntro && translations.work.sumpille?.description) {
-        console.log('✅ Updating kahviIntro');
-        kahviIntro.textContent = translations.work.sumpille.description;
-      } else {
-        console.log('❌ kahviIntro not found or no translation');
-      }
-
-      const visitKahvi = document.getElementById('visitkahvi');
-      if (visitKahvi && translations.work.sumpille?.linkText) {
-        console.log('✅ Updating visitKahvi');
-        visitKahvi.textContent = translations.work.sumpille.linkText;
-      } else {
-        console.log('❌ visitKahvi not found or no translation');
-      }
-
-      // Update project titles if needed
-      const projectTitles = document.querySelectorAll('.project h3');
-      if (translations.work.projectTitles && projectTitles.length > 0) {
-        console.log('✅ Updating project titles');
-        projectTitles.forEach((title, index) => {
-          if (translations.work.projectTitles[index]) {
-            // Keep the icon and update only the text
-            const icon = title.querySelector('i');
-            title.innerHTML = '';
-            if (icon) title.appendChild(icon);
-            title.appendChild(document.createTextNode(' ' + translations.work.projectTitles[index]));
-            console.log(`✅ Updated title ${index}: ${translations.work.projectTitles[index]}`);
-          }
-        });
-      } else {
-        console.log('❌ Project titles not found or no translation');
-      }
-    }
-
-    console.log('✅ Translation loading completed');
-
-  } catch (error) {
-    console.error('❌ Failed to load translations:', error);
-  }
-}
-
-// Fixed loadTranslations function for your flat JSON structure
-async function loadTranslations(lang) {
-  console.log('🔄 Loading translations for:', lang);
-  localStorage.setItem('language', lang);
-
-  try {
-    const response = await fetch(`/translations/${lang}.json`);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch translations: ${response.status}`);
-    }
-
-    const translations = await response.json();
-    console.log('📄 Loaded translations:', translations);
-
-    // Update language toggle buttons
-    document.querySelectorAll('.lang-toggle').forEach(btn => {
-      btn.setAttribute('aria-pressed', btn.id === `lang-${lang}`);
-      btn.classList.toggle('active', btn.id === `lang-${lang}`);
-    });
-
-    // Index page translations
-    const intro = document.getElementById('intro');
-    if (intro && translations.intro) {
-      console.log('✅ Updating intro');
-      intro.textContent = translations.intro;
-    }
-
-    const skillsTitle = document.getElementById('skillsTitle');
-    if (skillsTitle && translations.skillsTitle) {
-      console.log('✅ Updating skillsTitle');
-      skillsTitle.textContent = translations.skillsTitle;
-    }
-
-    // Contact page translations (flat structure)
-    console.log('🔍 Checking contact page elements...');
 
     const servicesIntro = document.getElementById('servicesIntro');
     if (servicesIntro && translations.servicesIntro) {
-      console.log('✅ Updating servicesIntro');
       servicesIntro.textContent = translations.servicesIntro;
-    } else {
-      console.log('❌ servicesIntro not found or no translation');
     }
 
     const servicesOutro = document.getElementById('servicesOutro');
     if (servicesOutro && translations.servicesOutro) {
-      console.log('✅ Updating servicesOutro');
       servicesOutro.textContent = translations.servicesOutro;
-    } else {
-      console.log('❌ servicesOutro not found or no translation');
     }
 
-    // Update services list items
     const servicesList = document.getElementById('servicesList');
     if (servicesList && translations.servicesList) {
-      console.log('✅ Updating servicesList');
       const listItems = servicesList.querySelectorAll('li');
-      console.log('📋 Found list items:', listItems.length);
       translations.servicesList.forEach((text, index) => {
         if (listItems[index]) {
           listItems[index].textContent = text;
-          console.log(`✅ Updated list item ${index}: ${text}`);
         }
       });
-    } else {
-      console.log('❌ servicesList not found or no translation');
     }
 
-    // Work page translations (flat structure)
-    console.log('🔍 Checking work page elements...');
-
-    // UkkoVelho project
     const ukkoVelhoIntro = document.getElementById('ukkoVelhoIntro');
     if (ukkoVelhoIntro && translations.ukkoVelhoIntro) {
-      console.log('✅ Updating ukkoVelhoIntro');
       ukkoVelhoIntro.textContent = translations.ukkoVelhoIntro;
-    } else {
-      console.log('❌ ukkoVelhoIntro not found or no translation');
     }
 
     const visitUkkoVelho = document.getElementById('visitUkkoVelho');
     if (visitUkkoVelho && translations.visitUkkoVelho) {
-      console.log('✅ Updating visitUkkoVelho');
       visitUkkoVelho.textContent = translations.visitUkkoVelho;
-    } else {
-      console.log('❌ visitUkkoVelho not found or no translation');
     }
 
-    // Portfolio project
     const portfolioIntro = document.getElementById('portfolioIntro');
     if (portfolioIntro && translations.portfolioIntro) {
-      console.log('✅ Updating portfolioIntro');
       portfolioIntro.textContent = translations.portfolioIntro;
-    } else {
-      console.log('❌ portfolioIntro not found or no translation');
     }
 
     const viewPortfolioGitHub = document.getElementById('viewPortfolioGitHub');
     if (viewPortfolioGitHub && translations.viewPortfolioGitHub) {
-      console.log('✅ Updating viewPortfolioGitHub');
       viewPortfolioGitHub.textContent = translations.viewPortfolioGitHub;
-    } else {
-      console.log('❌ viewPortfolioGitHub not found or no translation');
     }
 
-    // Sumpille/Kahvi project
     const kahviIntro = document.getElementById('kahviIntro');
     if (kahviIntro && translations.kahviIntro) {
-      console.log('✅ Updating kahviIntro');
       kahviIntro.textContent = translations.kahviIntro;
-    } else {
-      console.log('❌ kahviIntro not found or no translation');
     }
 
     const visitKahvi = document.getElementById('visitkahvi');
     if (visitKahvi && translations.visitKahvi) {
-      console.log('✅ Updating visitKahvi');
       visitKahvi.textContent = translations.visitKahvi;
-    } else {
-      console.log('❌ visitKahvi not found or no translation');
     }
 
-    console.log('✅ Translation loading completed');
-
-  } catch (error) {
-    console.error('❌ Failed to load translations:', error);
-  }
+  } catch {}
 }
 
 </script>
