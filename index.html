@@ -247,7 +247,7 @@ const pageContent = {
             </div>
             <div class="project">
                 <h3><i class="fas fa-briefcase"></i> Portfolio</h3>
-                <p id="portfolioIntro">My personal portfolio to demonstrate my skills, experience, and past work. This website serves as a showcase of my journey as a developer.</p>
+                <p id="portfolioIntro">My personal portfolio to demonstrate my skills, experience, and past work. This simple SPA (Single-Page Application) website serves as a showcase of my journey as a developer.</p>
                 <div class="skills">
                     <span class="skill-box">JavaScript</span>
                     <span class="skill-box">CSS</span>
@@ -326,6 +326,21 @@ function updatePageTitle() {
     }
 }
 
+function updateFooterState(currentPath) {
+    // Remove active class from all footer links
+    footerLinks.forEach(l => l.classList.remove('active'));
+
+    // Find and activate the correct footer link
+    const activeLink = Array.from(footerLinks).find(link =>
+        link.getAttribute('href') === currentPath
+    );
+
+    if (activeLink) {
+        activeLink.classList.add('active');
+        updateIndicator(activeLink, true);
+    }
+}
+
 async function loadPage(url, push = true) {
     try {
         // Map URL paths to content keys
@@ -361,7 +376,7 @@ async function loadPage(url, push = true) {
         }
 
         updatePageTitle();
-
+        updateFooterState(url);
         await new Promise(resolve => setTimeout(resolve, 10));
 
         if (window.loadTranslations) {
@@ -445,7 +460,17 @@ if (document.readyState === 'loading') {
 } else {
     initializePage();
 }
+document.addEventListener('DOMContentLoaded', function() {
 
+    // Add click handler for the H1 home link
+    const homeLink = document.querySelector('.name-link');
+    if (homeLink) {
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loadPage('/');
+        });
+    }
+});
 footerLinks.forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
