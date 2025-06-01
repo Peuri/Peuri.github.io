@@ -267,6 +267,7 @@ body.dark-theme .nav,
 body.dark-theme .content,
 body.dark-theme .skills-tools {
     background-color: #1a1a1a;
+    border-color: #fff;
 }
 
 body.dark-theme footer {
