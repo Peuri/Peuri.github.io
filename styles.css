@@ -319,12 +319,18 @@ body.dark-theme .footer-links a:hover {
 
 
 
+#main-content {
+  padding-bottom: 100px;
+}
+
 footer {
     color: #fff;
     padding: 20px 0;
     text-align: center;
-    position: relative;
+    position: fixed;
     bottom: 0;
+    left: 0;
+    right: 0;
     background-color: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(1px);
     z-index: 1000;
@@ -592,10 +598,12 @@ footer {
   bottom: 0px;
   left: 0;
   width: 100%;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(1px)
   z-index: 1000;
   box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
   height: 40px;
+
 
 }
 
