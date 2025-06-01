@@ -337,7 +337,12 @@ function updateFooterState(currentPath) {
 
     if (activeLink) {
         activeLink.classList.add('active');
-        updateIndicator(activeLink, true);
+        // Wait a frame to ensure DOM is updated
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                updateIndicator(activeLink, true);
+            });
+        });
     }
 }
 
@@ -537,12 +542,16 @@ function updateTime() {
 }
 
 window.addEventListener('resize', () => {
-    const activeLink = document.querySelector('.footer-links a.active');
-    if (activeLink) {
-        setTimeout(() => {
+    // Clear any existing timeout
+    clearTimeout(window.resizeTimeout);
+
+    // Wait for resize to finish, then update indicator
+    window.resizeTimeout = setTimeout(() => {
+        const activeLink = document.querySelector('.footer-links a.active');
+        if (activeLink) {
             updateIndicator(activeLink, false);
-        }, 100);
-    }
+        }
+    }, 200);
 });
 
 async function loadTranslations(lang) {
