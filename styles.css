@@ -267,9 +267,8 @@ nav {
 .skill-box:nth-child(13) { animation-delay: 1.3s; }
 .skill-box:nth-child(14) { animation-delay: 1.4s; }
 .skill-box:nth-child(15) { animation-delay: 1.5s; }
-
-
-
+.skill-box:nth-child(16) { animation-delay: 1.6s; }
+.skill-box:nth-child(17) { animation-delay: 1.7s; }
 
 
 body.dark-theme {
