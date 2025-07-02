@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+<script>
+    // Immediate theme check
+    if (localStorage.getItem('theme') === 'dark') {
+        document.body.classList.add('dark-theme');
+    }
+</script>
+<link rel="canonical" href="https://peuri.fi/">
+<meta charset="UTF-8">
+<meta name="msvalidate.01" content="C199C58C0B1359BEC8C9052B5951AD6F" />
+<meta name="google-site-verification" content="rwocjvTKGXOvw9WJydHWhZMBJTA38_snNXZrv0auzDs" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Peuri - Build Your Next Website with a Full-Stack Expert</title>
+<meta name="description" content="Peuri's portfolio showcases expertise in web development, cloud technologies, SEO, and website optimization. Based in Turku, Finland, Peuri delivers top-notch web solutions.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Peuri - Full-Stack Web Developer Portfolio">
+<meta property="og:description" content="Discover Peuri's expertise in full-stack web development, cloud solutions, SEO, and website optimization.">
+<meta property="og:image" content="favicon.ico">
+<meta property="og:image:type" content="image/x-icon">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://peuri.fi/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Peuri - Full-Stack Web Developer Portfolio">
+<meta name="twitter:description" content="Discover Peuri's portfolio showcasing modern web development and SEO solutions.">
+<meta name="twitter:image" content="favicon.ico">
+<meta name="keywords" content="Peuri, Full-Stack Web Developer, Finland, Web Development Portfolio, Cloud Technologies, SEO, Website Optimization">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      media="print"
+      onload="this.onload=null;this.media='all';">
+<noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</noscript>
+</head>
+
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="index.html" class="name-link">
+            <h1>Petteri Peuri</h1>
+        </a>
+        <div class="nav-details">
+            <div class="language-toggle">
+                <button id="lang-fi" class="lang-toggle" onclick="loadTranslations('fi')" aria-label="Switch language to Finnish" aria-pressed="false">FI</button>
+                <span>|</span>
+                <button id="lang-en" class="lang-toggle" onclick="loadTranslations('en')" aria-label="Switch language to English" aria-pressed="false">EN</button>
+            </div>
+            <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="theme-dot"></button>
+            <div id="time"
+                 role="timer"
+                 aria-label="Current time in Helsinki"
+                 aria-live="polite">
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main id="main-content">
+    <div class="content page-container">
+        <p id="intro">Hi! I'm a 33-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy physical activities such as tennis and weightlifting, as well as boating.
+        </p>
+    </div>
+    <div class="skills-tools page-container">
+        <h1 id="skillsTitle">Skills & Tools</h1>
+        <div class="skills-grid" aria-label="Technical skills">
+            <div class="skill-box">
+                HTML5
+                <span class="tooltip">The latest version of HTML used for structuring content on the web.</span>
+            </div>
+            <div class="skill-box">
+                CSS3
+                <span class="tooltip">Used for styling and designing the layout of web pages.</span>
+            </div>
+            <div class="skill-box">
+                JavaScript
+                <span class="tooltip">A programming language for creating dynamic, interactive web applications.</span>
+            </div>
+            <div class="skill-box">
+                jQuery
+                <span class="tooltip">A fast, small, and feature-rich JavaScript library used for DOM manipulation and event handling.</span>
+            </div>
+            <div class="skill-box">
+                Python
+                <span class="tooltip">A versatile programming language widely used for web development, data science, and automation.</span>
+            </div>
+            <div class="skill-box">
+                Flask
+                <span class="tooltip">A lightweight Python web framework for building web applications.</span>
+            </div>
+            <div class="skill-box">
+                SQLAlchemy
+                <span class="tooltip">A Python SQL toolkit and Object-Relational Mapping (ORM) library for database interactions.</span>
+            </div>
+            <div class="skill-box">
+                Git
+                <span class="tooltip">A distributed version control system for tracking changes in source code during software development.</span>
+            </div>
+            <div class="skill-box">
+                Cloudflare
+                <span class="tooltip">A cloud-based service offering CDN, DDoS protection, and security for websites.</span>
+            </div>
+            <div class="skill-box">
+                Oracle Cloud
+                <span class="tooltip">A suite of cloud computing services offered by Oracle, including databases, storage, and compute.</span>
+            </div>
+            <div class="skill-box">
+                Google Cloud
+                <span class="tooltip">A cloud computing platform offering infrastructure, data storage, and machine learning services by Google.</span>
+            </div>
+            <div class="skill-box">
+                Vercel
+                <span class="tooltip">A cloud platform for frontend frameworks and static sites, with serverless functions.</span>
+            </div>
+            <div class="skill-box">
+                MySQL
+                <span class="tooltip">An open-source relational database management system based on SQL.</span>
+            </div>
+            <div class="skill-box">
+                SQLite
+                <span class="tooltip">A self-contained, serverless, and zero-configuration SQL database engine.</span>
+            </div>
+            <div class="skill-box">
+                Docker
+                <span class="tooltip">A platform for developing, shipping, and running applications in containers.</span>
+            </div>
+            <div class="skill-box">
+                Redis
+                <span class="tooltip">An in-memory data store used as a database, cache, and message broker.</span>
+            </div>
+            <div class="skill-box">
+                SSL/TLS
+                <span class="tooltip">Protocols for securing communications over a computer network by encrypting data.</span>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <ul class="footer-links">
+        <li>
+            <a href="/" aria-label="Go to Peuri's home page" data-nav>
+                <i class="fas fa-home"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/work" aria-label="View Peuri's work and projects" data-nav>
+                <i class="fas fa-briefcase"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/contact" aria-label="Contact Peuri" data-nav>
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="indicator"></div>
+</footer>
+
+<script>
+const mainContent = document.getElementById('main-content');
+const footerLinks = document.querySelectorAll('.footer-links a[data-nav]');
+const indicator = document.querySelector('.indicator');
+
+// Page content stored in JavaScript
+const pageContent = {
+    'index.html': `
+        <div class="content page-container">
+            <p id="intro">Hi! I'm a 33-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy physical activities such as tennis and weightlifting, as well as boating.</p>
+        </div>
+        <div class="skills-tools page-container">
+            <h1 id="skillsTitle">Skills & Tools</h1>
+            <div class="skills-grid" aria-label="Technical skills">
+                <div class="skill-box">
+                    HTML5
+                    <span class="tooltip">The latest version of HTML used for structuring content on the web.</span>
+                </div>
+                <div class="skill-box">
+                    CSS3
+                    <span class="tooltip">Used for styling and designing the layout of web pages.</span>
+                </div>
+                <div class="skill-box">
+                    JavaScript
+                    <span class="tooltip">A programming language for creating dynamic, interactive web applications.</span>
+                </div>
+                <div class="skill-box">
+                    jQuery
+                    <span class="tooltip">A fast, small, and feature-rich JavaScript library used for DOM manipulation and event handling.</span>
+                </div>
+                <div class="skill-box">
+                    Python
+                    <span class="tooltip">A versatile programming language widely used for web development, data science, and automation.</span>
+                </div>
+                <div class="skill-box">
+                    Flask
+                    <span class="tooltip">A lightweight Python web framework for building web applications.</span>
+                </div>
+                <div class="skill-box">
+                    SQLAlchemy
+                    <span class="tooltip">A Python SQL toolkit and Object-Relational Mapping (ORM) library for database interactions.</span>
+                </div>
+                <div class="skill-box">
+                    Git
+                    <span class="tooltip">A distributed version control system for tracking changes in source code during software development.</span>
+                </div>
+                <div class="skill-box">
+                    Cloudflare
+                    <span class="tooltip">A cloud-based service offering CDN, DDoS protection, and security for websites.</span>
+                </div>
+                <div class="skill-box">
+                    Oracle Cloud
+                    <span class="tooltip">A suite of cloud computing services offered by Oracle, including databases, storage, and compute.</span>
+                </div>
+                <div class="skill-box">
+                    Google Cloud
+                    <span class="tooltip">A cloud computing platform offering infrastructure, data storage, and machine learning services by Google.</span>
+                </div>
+                <div class="skill-box">
+                    Vercel
+                    <span class="tooltip">A cloud platform for frontend frameworks and static sites, with serverless functions.</span>
+                </div>
+                <div class="skill-box">
+                    MySQL
+                    <span class="tooltip">An open-source relational database management system based on SQL.</span>
+                </div>
+                <div class="skill-box">
+                    SQLite
+                    <span class="tooltip">A self-contained, serverless, and zero-configuration SQL database engine.</span>
+                </div>
+                <div class="skill-box">
+                    Docker
+                    <span class="tooltip">A platform for developing, shipping, and running applications in containers.</span>
+                </div>
+                <div class="skill-box">
+                    Redis
+                    <span class="tooltip">An in-memory data store used as a database, cache, and message broker.</span>
+                </div>
+                <div class="skill-box">
+                    SSL/TLS
+                    <span class="tooltip">Protocols for securing communications over a computer network by encrypting data.</span>
+                </div>
+            </div>
+        </div>
+    `,
+    'work.html': `
+        <div class="content page-container">
+            <div class="project">
+                <h3><i class="fas fa-briefcase"></i> UkkoVelho</h3>
+                <p id="ukkoVelhoIntro">Ukkovelho is my largest solo project, it's fitness tracker made to help the users track their weights, distances, durations, notes and see their overall progress, history and insights into their training, helping people to see their weaknesses and strengths visualized and keep them motivated to improve and stay on course to well being. Ukkovelho's back-end is made with python. It's using MySQL to Store the data and it's hosted in Linux VPS.</p>
+                <div class="skills">
+                    <span class="skill-box">Oracle Cloud VPS</span>
+                    <span class="skill-box">Python</span>
+                    <span class="skill-box">Flask</span>
+                    <span class="skill-box">SQLAlchemy</span>
+                    <span class="skill-box">PyMySQL</span>
+                    <span class="skill-box">Gunicorn</span>
+                    <span class="skill-box">Nginx</span>
+                </div>
+                <a href="https://ukkovelho.com" target="_blank" class="project-link" id="visitUkkoVelho">Visit website</a>
+            </div>
+            <div class="project">
+                <h3><i class="fas fa-briefcase"></i> Portfolio</h3>
+                <p id="portfolioIntro">I made this portfolio to display my journey and capabilities as a web developer.
+ I used only JavaScript and CSS without frameworks.
+My goal was to be minimalistic and focus on being more responsive and fluid by using SPA.</p>
+                <div class="skills">
+                    <span class="skill-box">JavaScript</span>
+                    <span class="skill-box">CSS</span>
+                </div>
+                <a href="https://github.com/Peuri/Peuri.github.io" target="_blank" class="project-link" id="viewPortfolioGitHub">View Portfolio on GitHub</a>
+            </div>
+            <div class="project">
+                <h3><i class="fas fa-briefcase"></i> Sumpille</h3>
+                <p id="kahviIntro">Sumpille is interactive price tracker that lets users track and update the local coffee prices to help people scout for good deals nearby.
+I made it using mostly JavaScript and python and utilizing cloudflare workers.</p>
+                <div class="skills">
+                    <span class="skill-box">JavaScript</span>
+                    <span class="skill-box">CSS</span>
+                    <span class="skill-box">SQLite</span>
+                    <span class="skill-box">Cloudflare workers</span>
+                </div>
+                <a href="https://kahvi.pages.dev/" target="_blank" class="project-link" id="visitkahvi">Visit website</a>
+            </div>
+        </div>
+    `,
+    'contact.html': `
+        <div class="content page-container">
+            <div class="contact">
+                <p id="servicesIntro">I'm always open to new opportunities and offer services including:</p>
+                <ul id="servicesList">
+                    <li>Custom websites</li>
+                    <li>SEO and speed optimization</li>
+                    <li>Responsive design</li>
+                    <li>User analytics</li>
+                    <li>Ongoing site maintenance and support</li>
+                </ul>
+                <p id="servicesOutro">Whether you're looking for a custom website or need your site's speed and SEO optimized, I'm here to help. If you have a project in mind or need assistance with your website, don't hesitate to reach out. Let's connect and discuss how we can collaborate to bring your project to life and ensure its success.</p>
+            </div>
+            <div class="contact-icons">
+                <a href="mailto:petteri@peuri.fi" aria-label="Email" class="email">
+                    <i class="fas fa-envelope"></i>
+                    Email
+                </a>
+                <a href="https://wa.me/+639664734210" target="_blank" aria-label="WhatsApp" class="whatsapp">
+                    <i class="fab fa-whatsapp"></i>
+                    WhatsApp
+                </a>
+                <a href="https://github.com/Peuri" target="_blank" aria-label="GitHub" class="github">
+                    <i class="fab fa-github"></i>
+                    GitHub
+                </a>
+                <a href="https://instagram.com/thepeuri" target="_blank" aria-label="Instagram" class="instagram">
+                    <i class="fab fa-instagram"></i>
+                    Instagram
+                </a>
+            </div>
+        </div>
+    `
+};
+
+function updatePageTitle() {
+    const h1 = document.querySelector('.name-link h1');
+    if (!h1) return;
+
+    const currentPath = location.pathname;
+
+    switch(currentPath) {
+        case '/':
+        case '/index.html':
+            h1.textContent = 'Petteri Peuri';
+            break;
+        case '/work':
+        case '/work.html':
+            h1.textContent = 'Petteri Peuri / Work';
+            break;
+        case '/contact':
+        case '/contact.html':
+            h1.textContent = 'Petteri Peuri / Contact';
+            break;
+        default:
+            h1.textContent = 'Petteri Peuri';
+    }
+}
+
+function updateFooterState(currentPath) {
+    // Remove active class from all footer links
+    footerLinks.forEach(l => l.classList.remove('active'));
+
+    // Find and activate the correct footer link
+    const activeLink = Array.from(footerLinks).find(link =>
+        link.getAttribute('href') === currentPath
+    );
+
+    if (activeLink) {
+        activeLink.classList.add('active');
+        // Wait a frame to ensure DOM is updated
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                updateIndicator(activeLink, true);
+            });
+        });
+    }
+}
+
+async function loadPage(url, push = true) {
+    try {
+        // Map URL paths to content keys
+        const pathMap = {
+            '/': 'index.html',
+            '/index.html': 'index.html',
+            '/work': 'work.html',
+            '/work.html': 'work.html',
+            '/contact': 'contact.html',
+            '/contact.html': 'contact.html'
+        };
+
+        const contentKey = pathMap[url] || 'index.html';
+        const content = pageContent[contentKey];
+
+        if (content) {
+            mainContent.innerHTML = content;
+        } else {
+            mainContent.innerHTML = '<p>Content not found.</p>';
+        }
+
+        // Update document title based on page
+        const pageTitles = {
+            'index.html': 'Peuri - Build Your Next Website with a Full-Stack Expert',
+            'work.html': 'Peuri - My Work & Projects',
+            'contact.html': 'Peuri - Contact & Services'
+        };
+
+        document.title = pageTitles[contentKey] || pageTitles['index.html'];
+
+        if (push) {
+            history.pushState({ url }, '', url);
+        }
+
+        updatePageTitle();
+        updateFooterState(url);
+        await new Promise(resolve => setTimeout(resolve, 10));
+
+        if (window.loadTranslations) {
+            const lang = localStorage.getItem('language') || 'en';
+            window.loadTranslations(lang);
+        }
+        updateTime();
+if (contentKey === 'index.html') {
+    setTimeout(() => {
+        const skillBoxes = document.querySelectorAll('.skill-box');
+        skillBoxes.forEach((box, index) => {
+            box.style.animationDelay = `${index * 0.1}s`;
+        });
+    }, 50);
+}
+    } catch (error) {
+        mainContent.innerHTML = '<p>Failed to load content. Please try again later.</p>';
+    }
+}
+
+function updateIndicator(activeLink, animate = true) {
+    if (!activeLink || !indicator) {
+        return;
+    }
+
+    const linkRect = activeLink.getBoundingClientRect();
+    const parentRect = indicator.offsetParent.getBoundingClientRect();
+
+    const targetCenterRelativeToFooter = (linkRect.left + linkRect.width / 2) - parentRect.left;
+    const finalTranslateX = targetCenterRelativeToFooter - (indicator.offsetWidth / 2);
+
+    if (animate) {
+        indicator.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+        indicator.style.transform = `translateX(${finalTranslateX}px)`;
+    } else {
+        indicator.style.transition = 'none';
+        indicator.style.transform = `translateX(${finalTranslateX}px)`;
+        indicator.style.bottom = '16px';
+        indicator.offsetHeight;
+        indicator.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
+    }
+}
+
+function initializePage() {
+    const currentPath = location.pathname;
+
+    // Map paths to content keys for initialization
+    const pathMap = {
+        '/': 'index.html',
+        '/index.html': 'index.html',
+        '/work': 'work.html',
+        '/work.html': 'work.html',
+        '/contact': 'contact.html',
+        '/contact.html': 'contact.html'
+    };
+
+    const contentKey = pathMap[currentPath] || 'index.html';
+
+    // Load initial content
+    if (pageContent[contentKey]) {
+        mainContent.innerHTML = pageContent[contentKey];
+    }
+
+    footerLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === currentPath);
+    });
+
+    updatePageTitle();
+
+    requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+            const activeLink = document.querySelector('.footer-links a.active');
+            if (activeLink) {
+                updateIndicator(activeLink, false);
+            }
+        });
+    });
+
+    loadTheme();
+    updateTime();
+    setInterval(updateTime, 1000);
+}
+
+document.addEventListener('DOMContentLoaded', initializePage);
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePage);
+} else {
+    initializePage();
+}
+document.addEventListener('DOMContentLoaded', function() {
+
+    // Add click handler for the H1 home link
+    const homeLink = document.querySelector('.name-link');
+    if (homeLink) {
+        homeLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            loadPage('/');
+        });
+    }
+});
+footerLinks.forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+
+        footerLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
+        updateIndicator(link, true);
+
+        loadPage(link.getAttribute('href'));
+    });
+});
+
+window.addEventListener('popstate', event => {
+    const url = event.state?.url || 'index.html';
+
+    footerLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href') === url);
+    });
+
+    const activeLink = document.querySelector('.footer-links a.active');
+    if (activeLink) {
+        updateIndicator(activeLink, true);
+    }
+
+    loadPage(url, false);
+    updatePageTitle();
+});
+
+function loadTheme() {
+    const savedTheme = localStorage.getItem('theme');
+    const body = document.body;
+    if (savedTheme === 'dark') {
+        body.classList.add("dark-theme");
+    } else {
+        body.classList.remove("dark-theme");
+    }
+}
+
+function toggleTheme() {
+    const body = document.body;
+    body.classList.toggle("dark-theme");
+    if (body.classList.contains("dark-theme")) {
+        localStorage.setItem('theme', 'dark');
+    } else {
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+function updateTime() {
+    const timeElement = document.getElementById("time");
+    if (timeElement) {
+        const now = new Date();
+        const options = { timeZone: 'Europe/Helsinki', hour12: false };
+        timeElement.textContent = now.toLocaleTimeString('fi-FI', options);
+    }
+}
+
+window.addEventListener('resize', () => {
+    // Clear any existing timeout
+    clearTimeout(window.resizeTimeout);
+
+    // Wait for resize to finish, then update indicator
+    window.resizeTimeout = setTimeout(() => {
+        const activeLink = document.querySelector('.footer-links a.active');
+        if (activeLink) {
+            updateIndicator(activeLink, false);
+        }
+    }, 200);
+});
+
+async function loadTranslations(lang) {
+  localStorage.setItem('language', lang);
+
+  try {
+    const response = await fetch(`/translations/${lang}.json`);
+    if (!response.ok) {
+      throw new Error(`Failed to fetch translations: ${response.status}`);
+    }
+
+    const translations = await response.json();
+
+    document.querySelectorAll('.lang-toggle').forEach(btn => {
+      btn.setAttribute('aria-pressed', btn.id === `lang-${lang}`);
+      btn.classList.toggle('active', btn.id === `lang-${lang}`);
+    });
+
+    const intro = document.getElementById('intro');
+    if (intro && translations.intro) {
+      intro.textContent = translations.intro;
+    }
+
+    const skillsTitle = document.getElementById('skillsTitle');
+    if (skillsTitle && translations.skillsTitle) {
+      skillsTitle.textContent = translations.skillsTitle;
+    }
+
+    const servicesIntro = document.getElementById('servicesIntro');
+    if (servicesIntro && translations.servicesIntro) {
+      servicesIntro.textContent = translations.servicesIntro;
+    }
+
+    const servicesOutro = document.getElementById('servicesOutro');
+    if (servicesOutro && translations.servicesOutro) {
+      servicesOutro.textContent = translations.servicesOutro;
+    }
+
+    const servicesList = document.getElementById('servicesList');
+    if (servicesList && translations.servicesList) {
+      const listItems = servicesList.querySelectorAll('li');
+      translations.servicesList.forEach((text, index) => {
+        if (listItems[index]) {
+          listItems[index].textContent = text;
+        }
+      });
+    }
+
+    const ukkoVelhoIntro = document.getElementById('ukkoVelhoIntro');
+    if (ukkoVelhoIntro && translations.ukkoVelhoIntro) {
+      ukkoVelhoIntro.textContent = translations.ukkoVelhoIntro;
+    }
+
+    const visitUkkoVelho = document.getElementById('visitUkkoVelho');
+    if (visitUkkoVelho && translations.visitUkkoVelho) {
+      visitUkkoVelho.textContent = translations.visitUkkoVelho;
+    }
+
+    const portfolioIntro = document.getElementById('portfolioIntro');
+    if (portfolioIntro && translations.portfolioIntro) {
+      portfolioIntro.textContent = translations.portfolioIntro;
+    }
+
+    const viewPortfolioGitHub = document.getElementById('viewPortfolioGitHub');
+    if (viewPortfolioGitHub && translations.viewPortfolioGitHub) {
+      viewPortfolioGitHub.textContent = translations.viewPortfolioGitHub;
+    }
+
+    const kahviIntro = document.getElementById('kahviIntro');
+    if (kahviIntro && translations.kahviIntro) {
+      kahviIntro.textContent = translations.kahviIntro;
+    }
+
+    const visitKahvi = document.getElementById('visitkahvi');
+    if (visitKahvi && translations.visitKahvi) {
+      visitKahvi.textContent = translations.visitKahvi;
+    }
+
+  } catch {}
+}
+
+</script>
+
+</body>
+</html>
