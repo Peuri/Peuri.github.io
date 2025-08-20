@@ -17,5 +17,7 @@
   "portfolioIntro": "I made this portfolio to display my journey and capabilities as a web developer. I used only JavaScript and CSS without frameworks. My goal was to be minimalistic and focus on being more responsive and fluid by using SPA.",
   "viewPortfolioGitHub": "View Portfolio on GitHub",
   "kahviIntro": "Sumpille is interactive price tracker that lets users track and update the local coffee prices to help people scout for good deals nearby. I made it using mostly JavaScript and python and utilizing cloudflare workers.",
-  "visitKahvi": "Visit website"
+  "visitKahvi": "Visit website",
+  "frescaIntro": "Simple home page for popular touristy ice cream stand.",
+  "visitFresca": "Visit Website."
 }

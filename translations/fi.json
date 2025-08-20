@@ -17,5 +17,7 @@
 "portfolioIntro": "Tein tämän portfolion näyttääkseni matkani ja taitoni web-kehittäjänä. Käytin vain JavaScriptiä ja CSS:ää ilman frameworkkeja. Tavoitteena oli minimalistisuus ja sujuva, responsiivinen käyttökokemus SPA:n avulla.",
 "viewPortfolioGitHub": "Katso Portfolio GitHubissa",
 "kahviIntro": "Sumpille on interaktiivinen hintaseuranta, jossa käyttäjät voivat seurata ja päivittää paikallisia kahvihintoja löytääkseen hyviä tarjouksia lähialueelta. Tein sen pääasiassa JavaScriptillä ja Pythonilla, hyödyntäen Cloudflare workersia.",
-"visitKahvi": "Vieraile sivustolla"
+"visitKahvi": "Vieraile sivustolla",
+"frescaIntro": "Yksinkertainen kotisivu suositulle turistien jäätelökojulle.",
+"visitFresca": "Vieraile sivustolla."
 }
