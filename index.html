@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -201,7 +202,7 @@ const indicator = document.querySelector('.indicator');
 
 // Page content stored in JavaScript
 const pageContent = {
-    'index.html':
+    'index.html': `
         <div class="content page-container">
             <p id="intro">Hi! I'm a 34-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy physical activities such as tennis and weightlifting, as well as boating.</p>
         </div>
@@ -278,8 +279,8 @@ const pageContent = {
                 </div>
             </div>
         </div>
-    ,
-    'work.html':
+    `,
+    'work.html': `
         <div class="content page-container">
             <div class="project">
                 <h3><i class="fas fa-briefcase"></i> UkkoVelho</h3>
@@ -331,8 +332,8 @@ I made it using mostly JavaScript and python and utilizing cloudflare workers.</
                 <a href="http://130.61.228.164:8080/" target="_blank" class="project-link" id="visitFresca">Visit website</a>
             </div>
         </div>
-    ,
-    'contact.html':
+    `,
+    'contact.html': `
         <div class="content page-container">
             <div class="contact">
                 <p id="servicesIntro">I'm always open to new opportunities and offer services including:</p>
@@ -367,7 +368,7 @@ I made it using mostly JavaScript and python and utilizing cloudflare workers.</
                 </a>
             </div>
         </div>
-
+    `
 };
 
 function updatePageTitle() {
@@ -461,7 +462,7 @@ if (contentKey === 'index.html') {
     setTimeout(() => {
         const skillBoxes = document.querySelectorAll('.skill-box');
         skillBoxes.forEach((box, index) => {
-            box.style.animationDelay = ${index * 0.1}s;
+            box.style.animationDelay = `${index * 0.1}s`;
         });
     }, 50);
 }
@@ -483,10 +484,10 @@ function updateIndicator(activeLink, animate = true) {
 
     if (animate) {
         indicator.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
-        indicator.style.transform = translateX(${finalTranslateX}px);
+        indicator.style.transform = `translateX(${finalTranslateX}px)`;
     } else {
         indicator.style.transition = 'none';
-        indicator.style.transform = translateX(${finalTranslateX}px);
+        indicator.style.transform = `translateX(${finalTranslateX}px)`;
         indicator.style.bottom = '16px';
         indicator.offsetHeight;
         indicator.style.transition = 'transform 0.3s cubic-bezier(0.4, 0, 0.2, 1)';
@@ -626,16 +627,16 @@ async function loadTranslations(lang) {
   localStorage.setItem('language', lang);
 
   try {
-    const response = await fetch(/translations/${lang}.json);
+    const response = await fetch(`/translations/${lang}.json`);
     if (!response.ok) {
-      throw new Error(Failed to fetch translations: ${response.status});
+      throw new Error(`Failed to fetch translations: ${response.status}`);
     }
 
     const translations = await response.json();
 
     document.querySelectorAll('.lang-toggle').forEach(btn => {
-      btn.setAttribute('aria-pressed', btn.id === lang-${lang});
-      btn.classList.toggle('active', btn.id === lang-${lang});
+      btn.setAttribute('aria-pressed', btn.id === `lang-${lang}`);
+      btn.classList.toggle('active', btn.id === `lang-${lang}`);
     });
 
     const intro = document.getElementById('intro');
