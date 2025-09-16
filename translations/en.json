@@ -1,0 +1,23 @@
+{
+  "intro": "Hi! I'm a 34-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy physical activities such as tennis and weightlifting, as well as boating.",
+  "skillsTitle": "Skills & Tools",
+  "contact": "Petteri Peuri / Contact",
+  "työ": "Petteri Peuri / Work",
+  "servicesIntro": "I'm always open to new opportunities and offer services including:",
+  "servicesList": [
+    "Custom websites",
+    "SEO and speed optimization",
+    "Responsive design",
+    "User analytics",
+    "Ongoing site maintenance and support"
+  ],
+  "servicesOutro": "Whether you're looking for a custom website or need your site's speed and SEO optimized, I'm here to help. If you have a project in mind or need assistance with your website, don't hesitate to reach out. Let's connect and discuss how we can collaborate to bring your project to life and ensure its success.",
+  "ukkoVelhoIntro": "Ukkovelho is my largest solo project, it's fitness tracker made to help the users track their weights, distances, durations, notes and see their overall progress, history and insights into their training, helping people to see their weaknesses and strengths visualized and keep them motivated to improve and stay on course to well being. Ukkovelho's back-end is made with python. It's using MySQL to Store the data and it's hosted in Linux VPS.",
+  "visitUkkoVelho": "Visit website",
+  "portfolioIntro": "I made this portfolio to display my journey and capabilities as a web developer. I used only JavaScript and CSS without frameworks. My goal was to be minimalistic and focus on being more responsive and fluid by using SPA.",
+  "viewPortfolioGitHub": "View Portfolio on GitHub",
+  "kahviIntro": "Sumpille is interactive price tracker that lets users track and update the local coffee prices to help people scout for good deals nearby. I made it using mostly JavaScript and python and utilizing cloudflare workers.",
+  "visitKahvi": "Visit website",
+  "frescaIntro": "Simple home page for popular touristy ice cream stand.",
+  "visitFresca": "Visit Website"
+}

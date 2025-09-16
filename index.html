@@ -1,0 +1,467 @@
+
+
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+<script>
+  // ================== SPA REDIRECT HANDLER ==================
+  (function() {
+      try {
+          var redirect = sessionStorage.getItem('redirect');
+          if (redirect) {
+              sessionStorage.removeItem('redirect');
+              if (redirect !== location.href) {
+                  var url = new URL(redirect);
+                  var path = url.pathname;
+                  if (['/', '/index.html', '/work', '/work.html', '/contact', '/contact.html'].includes(path)) {
+                      if (history.replaceState) history.replaceState({url: path}, '', path);
+                      requestAnimationFrame(() => { if(window.loadPage) loadPage(path, false); });
+                  }
+              }
+          }
+      } catch(e){ console.warn('Redirect handler error:', e); }
+  })();
+</script>
+
+<script>
+    // Immediate theme check - Edge compatible
+    try {
+      if (localStorage.getItem('theme') === 'dark') {
+          document.documentElement.classList.add('dark-theme');
+          if (document.body) document.body.classList.add('dark-theme');
+      }
+    } catch (e) {
+      console.warn('Theme loading error:', e);
+    }
+</script>
+
+<link rel="canonical" href="https://peuri.fi/">
+<meta charset="UTF-8">
+<meta name="msvalidate.01" content="C199C58C0B1359BEC8C9052B5951AD6F" />
+<meta name="google-site-verification" content="rwocjvTKGXOvw9WJydHWhZMBJTA38_snNXZrv0auzDs" />
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<title>Peuri - Build Your Next Website with a Full-Stack Expert</title>
+<meta name="description" content="Peuri's portfolio showcases expertise in web development, cloud technologies, SEO, and website optimization. Based in Turku, Finland, Peuri delivers top-notch web solutions.">
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="Peuri - Full-Stack Web Developer Portfolio">
+<meta property="og:description" content="Discover Peuri's expertise in full-stack web development, cloud solutions, SEO, and website optimization.">
+<meta property="og:image" content="favicon.ico">
+<meta property="og:image:type" content="image/x-icon">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://peuri.fi/">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Peuri - Full-Stack Web Developer Portfolio">
+<meta name="twitter:description" content="Discover Peuri's portfolio showcasing modern web development and SEO solutions.">
+<meta name="twitter:image" content="favicon.ico">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+      media="print"
+      onload="this.onload=null;this.media='all';">
+<noscript>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</noscript>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-D496R9YXJ0"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-D496R9YXJ0');
+</script>
+</head>
+
+<body>
+
+<nav aria-label="Main navigation">
+    <div class="nav-container">
+        <a href="index.html" class="name-link">
+            <h1>Petteri Peuri</h1>
+        </a>
+        <div class="nav-details">
+            <div class="language-toggle">
+                <button id="lang-fi" class="lang-toggle" onclick="loadTranslations('fi')" aria-label="Switch language to Finnish" aria-pressed="false">FI</button>
+                <span>|</span>
+                <button id="lang-en" class="lang-toggle" onclick="loadTranslations('en')" aria-label="Switch language to English" aria-pressed="false">EN</button>
+            </div>
+            <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme" class="theme-dot"></button>
+            <div id="time"
+                 role="timer"
+                 aria-label="Current time in Helsinki"
+                 aria-live="polite">
+            </div>
+        </div>
+    </div>
+</nav>
+
+<main id="main-content">
+</main>
+
+<footer>
+    <ul class="footer-links">
+        <li>
+            <a href="/" aria-label="Go to Peuri's home page" data-nav>
+                <i class="fas fa-home"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/work" aria-label="View Peuri's work and projects" data-nav>
+                <i class="fas fa-briefcase"></i>
+            </a>
+        </li>
+        <li>
+            <a href="/contact" aria-label="Contact Peuri" data-nav>
+                <i class="fas fa-envelope"></i>
+            </a>
+        </li>
+    </ul>
+    <div class="indicator"></div>
+</footer>
+
+<script>
+// ================== GLOBALS ==================
+var mainContent = document.getElementById('main-content');
+var footerLinks = document.querySelectorAll('.footer-links a[data-nav]');
+var indicator = document.querySelector('.indicator');
+var currentLang = 'en';
+
+// ================== PAGE CONTENT ==================
+
+var pageContent = {
+    'index.html':         '<div class="content page-container">\n' +
+            '            <p id="intro">Hi! I\'m a 34-year-old Full-Stack Web Developer from Finland with two years of experience creating modern, user-friendly websites and applications. My expertise spans front-end and back-end development, cloud technologies, SEO and website performance optimization. Outside of work, I enjoy physical activities such as tennis and weightlifting, as well as boating.</p>\n' +
+            '        </div>\n' +
+            '        <div class="skills-tools page-container">\n' +
+            '            <h1 id="skillsTitle">Skills & Tools</h1>\n' +
+            '            <div class="skills-grid" aria-label="Technical skills">\n' +
+            '                <div class="skill-box">\n' +
+            '                    HTML5\n' +
+            '                    <span class="tooltip">The latest version of HTML used for structuring content on the web.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    CSS3\n' +
+            '                    <span class="tooltip">Used for styling and designing the layout of web pages.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    JavaScript\n' +
+            '                    <span class="tooltip">A programming language for creating dynamic, interactive web applications.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    jQuery\n' +
+            '                    <span class="tooltip">A fast, small, and feature-rich JavaScript library used for DOM manipulation and event handling.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Python\n' +
+            '                    <span class="tooltip">A versatile programming language widely used for web development, data science, and automation.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Flask\n' +
+            '                    <span class="tooltip">A lightweight Python web framework for building web applications.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    SQLAlchemy\n' +
+            '                    <span class="tooltip">A Python SQL toolkit and Object-Relational Mapping (ORM) library for database interactions.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Git\n' +
+            '                    <span class="tooltip">A distributed version control system for tracking changes in source code during software development.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Cloudflare\n' +
+            '                    <span class="tooltip">A cloud-based service offering CDN, DDoS protection, and security for websites.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Oracle Cloud\n' +
+            '                    <span class="tooltip">A suite of cloud computing services offered by Oracle, including databases, storage, and compute.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Google Cloud\n' +
+            '                    <span class="tooltip">A cloud computing platform offering infrastructure, data storage, and machine learning services by Google.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Vercel\n' +
+            '                    <span class="tooltip">A cloud platform for frontend frameworks and static sites, with serverless functions.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    MySQL\n' +
+            '                    <span class="tooltip">An open-source relational database management system based on SQL.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    SQLite\n' +
+            '                    <span class="tooltip">A self-contained, serverless, and zero-configuration SQL database engine.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Docker\n' +
+            '                    <span class="tooltip">A platform for developing, shipping, and running applications in containers.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    Redis\n' +
+            '                    <span class="tooltip">An in-memory data store used as a database, cache, and message broker.</span>\n' +
+            '                </div>\n' +
+            '                <div class="skill-box">\n' +
+            '                    SSL/TLS\n' +
+            '                    <span class="tooltip">Protocols for securing communications over a computer network by encrypting data.</span>\n' +
+            '                </div>\n' +
+            '            </div>\n' +
+            '        </div>',
+    'work.html':         '<div class="content page-container">\n' +
+            '            <div class="project">\n' +
+            '                <h3><i class="fas fa-briefcase"></i> UkkoVelho</h3>\n' +
+            '                <p id="ukkoVelhoIntro">Ukkovelho is my largest solo project, it\'s fitness tracker made to help the users track their weights, distances, durations, notes and see their overall progress, history and insights into their training, helping people to see their weaknesses and strengths visualized and keep them motivated to improve and stay on course to well being. Ukkovelho\'s back-end is made with python. It\'s using MySQL to Store the data and it\'s hosted in Linux VPS.</p>\n' +
+            '                <div class="skills">\n' +
+            '                    <span class="skill-box">Oracle Cloud VPS</span>\n' +
+            '                    <span class="skill-box">Python</span>\n' +
+            '                    <span class="skill-box">Flask</span>\n' +
+            '                    <span class="skill-box">SQLAlchemy</span>\n' +
+            '                    <span class="skill-box">PyMySQL</span>\n' +
+            '                    <span class="skill-box">Gunicorn</span>\n' +
+            '                    <span class="skill-box">Nginx</span>\n' +
+            '                </div>\n' +
+            '                <a href="https://ukkovelho.com" target="_blank" class="project-link" id="visitUkkoVelho">Visit website</a>\n' +
+            '            </div>\n' +
+            '            <div class="project">\n' +
+            '                <h3><i class="fas fa-briefcase"></i> Portfolio</h3>\n' +
+            '                <p id="portfolioIntro">I made this portfolio to display my journey and capabilities as a web developer.\n' +
+            ' I used only JavaScript and CSS without frameworks.\n' +
+            'My goal was to be minimalistic and focus on being more responsive and fluid by using SPA.</p>\n' +
+            '                <div class="skills">\n' +
+            '                    <span class="skill-box">JavaScript</span>\n' +
+            '                    <span class="skill-box">CSS</span>\n' +
+            '                </div>\n' +
+            '                <a href="https://github.com/Peuri/Peuri.github.io" target="_blank" class="project-link" id="viewPortfolioGitHub">View Portfolio on GitHub</a>\n' +
+            '            </div>\n' +
+            '            <div class="project">\n' +
+            '                <h3><i class="fas fa-briefcase"></i> Sumpille</h3>\n' +
+            '                <p id="kahviIntro">Sumpille is interactive price tracker that lets users track and update the local coffee prices to help people scout for good deals nearby.\n' +
+            'I made it using mostly JavaScript and python and utilizing cloudflare workers.</p>\n' +
+            '                <div class="skills">\n' +
+            '                    <span class="skill-box">HTML</span>\n' +
+            '                    <span class="skill-box">CSS</span>\n' +
+            '                    <span class="skill-box">JavaScript</span>\n' +
+            '                    <span class="skill-box">SQLite</span>\n' +
+            '                    <span class="skill-box">Cloudflare workers</span>\n' +
+            '                </div>\n' +
+            '                <a href="https://kahvi.pages.dev/" target="_blank" class="project-link" id="visitkahvi">Visit website</a>\n' +
+            '            </div>\n' +
+            '            <div class="project">\n' +
+            '                <h3><i class="fas fa-briefcase"></i> FRESCA Ice cream</h3>\n' +
+            '                <p id="frescaIntro">Simple home page for popular touristy ice cream stand.</p>\n' +
+            '                <div class="skills">\n' +
+            '                    <span class="skill-box">Oracle Cloud VPS</span>\n' +
+            '                    <span class="skill-box">HTML</span>\n' +
+            '                    <span class="skill-box">CSS</span>\n' +
+            '                    <span class="skill-box">JavaScript</span>\n' +
+            '                </div>\n' +
+            '                <a href="http://130.61.228.164:8080/" target="_blank" class="project-link" id="visitFresca">Visit website</a>\n' +
+            '            </div>\n' +
+            '        </div>',
+    'contact.html':         '<div class="content page-container">\n' +
+            '            <div class="contact">\n' +
+            '                <p id="servicesIntro">I\'m always open to new opportunities and offer services including:</p>\n' +
+            '                <ul id="servicesList">\n' +
+            '                    <li>Custom websites</li>\n' +
+            '                    <li>SEO and speed optimization</li>\n' +
+            '                    <li>Responsive design</li>\n' +
+            '                    <li>User analytics</li>\n' +
+            '                    <li>Ongoing site maintenance and support</li>\n' +
+            '                </ul>\n' +
+            '                <p id="servicesOutro">Whether you\'re looking for a custom website or need your site\'s speed and SEO optimized, I\'m here to help. If you have a project in mind or need assistance with your website, don\'t hesitate to reach out. Let\'s connect and discuss how we can collaborate to bring your project to life and ensure its success.</p>\n' +
+            '            </div>\n' +
+            '            <div class="contact-icons">\n' +
+            '                <a href="mailto:petteri@peuri.fi" aria-label="Email" class="email">\n' +
+            '                    <i class="fas fa-envelope"></i>\n' +
+            '                    Email\n' +
+            '                </a>\n' +
+            '                <a href="https://wa.me/+639664734210" target="_blank" aria-label="WhatsApp" class="whatsapp">\n' +
+            '                    <i class="fab fa-whatsapp"></i>\n' +
+            '                    WhatsApp\n' +
+            '                </a>\n' +
+            '                <a href="https://github.com/Peuri" target="_blank" aria-label="GitHub" class="github">\n' +
+            '                    <i class="fab fa-github"></i>\n' +
+            '                    GitHub\n' +
+            '                </a>\n' +
+            '                <a href="https://www.linkedin.com/in/petteri-p-671962369/" target="_blank" aria-label="LinkedIn" class="LinkedIn">\n' +
+            '                    <i class="fab fa-linkedin"></i>\n' +
+            '                    LinkedIn\n' +
+            '                </a>\n' +
+            '                 <a href="/Petteri_Peuri_CV_2025.pdf" download aria-label="Download CV" class="cv">\n' +
+            '                    <i class="fas fa-file-pdf"></i> Download CV\n' +
+            '                </a>\n' +
+            '            </div>\n' +
+            '        </div>'
+    };
+
+// ================== UTIL ==================
+function normalizePath(path){
+    if(path === '/' || path === '/index.html') return 'index.html';
+    if(path === '/work' || path === '/work.html') return 'work.html';
+    if(path === '/contact' || path === '/contact.html') return 'contact.html';
+    return 'index.html';
+}
+
+// ================== THEME ==================
+function loadTheme() {
+    try {
+        if(localStorage.getItem('theme')==='dark') document.body.classList.add("dark-theme");
+        else document.body.classList.remove("dark-theme");
+    } catch(e){ console.warn(e); }
+}
+function toggleTheme() {
+    try {
+        document.body.classList.toggle("dark-theme");
+        localStorage.setItem('theme', document.body.classList.contains("dark-theme") ? 'dark' : 'light');
+    } catch(e){ console.warn(e); }
+}
+
+// ================== CLOCK ==================
+function updateTime() {
+    var el = document.getElementById("time");
+    if(!el) return;
+    try{
+        var now = new Date();
+        var options = { timeZone: 'Europe/Helsinki', hour12: false };
+        el.textContent = now.toLocaleTimeString('fi-FI', options);
+    } catch(e){ el.textContent = new Date().toLocaleTimeString(); }
+}
+setInterval(updateTime,1000);
+
+// ================== FOOTER DOT ==================
+function updateIndicator(activeLink, animate=true){
+    if(!activeLink || !indicator) return;
+    requestAnimationFrame(()=>{
+        try{
+            var rect = activeLink.getBoundingClientRect();
+            var parentRect = indicator.offsetParent.getBoundingClientRect();
+            var x = (rect.left + rect.width/2) - parentRect.left - indicator.offsetWidth/2;
+            indicator.style.transition = animate ? 'transform 0.3s cubic-bezier(0.4,0,0.2,1)' : 'none';
+            indicator.style.transform = `translateX(${x}px)`;
+            indicator.style.bottom = '16px';
+        } catch(e){ console.warn(e); }
+    });
+}
+
+// ================== PAGE TITLE ==================
+function updatePageTitle(){
+    var h1 = document.querySelector('.name-link h1');
+    if(!h1) return;
+    switch(location.pathname){
+        case '/': case '/index.html': h1.textContent='Petteri Peuri'; break;
+        case '/work': case '/work.html': h1.textContent='Petteri Peuri / Work'; break;
+        case '/contact': case '/contact.html': h1.textContent='Petteri Peuri / Contact'; break;
+        default: h1.textContent='Petteri Peuri';
+    }
+}
+
+// ================== SPA LOAD ==================
+function loadPage(url,push=true){
+    var map = {'/':'index.html','/index':'index.html','/work':'work.html','/work.html':'work.html','/contact':'contact.html','/contact.html':'contact.html'};
+    var key = map[url] || 'index.html';
+    mainContent.innerHTML = pageContent[key] || '<p>Content not found.</p>';
+
+    if(push && history.pushState) history.pushState({url:url}, '', url);
+
+    updatePageTitle();
+
+    footerLinks.forEach(l=>l.classList.toggle('active', normalizePath(l.getAttribute('href'))===key));
+    var activeLink = document.querySelector('.footer-links a.active');
+    if(activeLink) updateIndicator(activeLink,true);
+
+    setTimeout(()=> loadTranslations(loadLang()),50);
+}
+
+// ================== LANGUAGES ==================
+function saveLang(lang){ try{ localStorage.setItem('language',lang);}catch(e){} currentLang=lang;}
+function loadLang(){ try{ return localStorage.getItem('language')||currentLang;}catch(e){return currentLang;}}
+function applyTranslations(trans){
+    Object.keys(trans).forEach(key=>{
+        var el = document.getElementById(key);
+        if(!el) return;
+
+        if(Array.isArray(trans[key])){
+            // Clear existing list items
+            el.innerHTML = '';
+            // Append each item as <li>
+            trans[key].forEach(item=>{
+                var li = document.createElement('li');
+                li.textContent = item;
+                el.appendChild(li);
+            });
+        } else {
+            // Plain text / HTML
+            el.innerHTML = trans[key];
+        }
+    });
+}
+
+
+function loadTranslations(lang){
+    saveLang(lang);
+    document.querySelectorAll('.lang-toggle').forEach(btn=>{
+        const active=btn.id==='lang-'+lang;
+        btn.setAttribute('aria-pressed',active);
+        btn.classList.toggle('active',active);
+    });
+    fetch('translations/'+lang+'.json')
+        .then(r=>r.ok?r.json():Promise.reject('Not found'))
+        .then(applyTranslations)
+        .catch(e=>console.warn('Translation error',e));
+}
+
+// ================== INIT ==================
+function initializePage(){
+    var key = normalizePath(location.pathname);
+    mainContent.innerHTML = pageContent[key] || '<p>Content not found.</p>';
+
+    footerLinks.forEach(l=>l.classList.toggle('active', normalizePath(l.getAttribute('href'))===key));
+    var activeLink=document.querySelector('.footer-links a.active');
+    if(activeLink) updateIndicator(activeLink,false);
+
+    updatePageTitle();
+    loadTheme();
+    updateTime();
+    loadTranslations(loadLang());
+}
+
+// ================== DOM READY ==================
+function domReady(cb){ if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',cb); else cb();}
+domReady(()=>{
+    initializePage();
+
+    footerLinks.forEach(link=>{
+        link.addEventListener('click',e=>{
+            e.preventDefault();
+            var href = link.getAttribute('href');
+            loadPage(href);
+        });
+    });
+
+    var homeLink = document.querySelector('.name-link');
+    if(homeLink) homeLink.addEventListener('click', e=>{ e.preventDefault(); loadPage('/'); });
+
+    document.getElementById('lang-fi').onclick = ()=>loadTranslations('fi');
+    document.getElementById('lang-en').onclick = ()=>loadTranslations('en');
+});
+
+// ================== POPSTATE ==================
+window.addEventListener('popstate', e=>{
+    var url = (e.state && e.state.url) || '/';
+    loadPage(url,false);
+    updatePageTitle();
+});
+
+// ================== RESIZE ==================
+window.addEventListener('resize', ()=>{
+    if(window.resizeTimeout) clearTimeout(window.resizeTimeout);
+    window.resizeTimeout=setTimeout(()=>{
+        var activeLink=document.querySelector('.footer-links a.active');
+        if(activeLink) updateIndicator(activeLink,false);
+    },200);
+});
+
+// Expose globally
+window.loadPage = loadPage;
+</script>
+
+</body>
+</html>
