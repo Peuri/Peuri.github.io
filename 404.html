@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Peuri - Redirecting...</title>
+<script>
+  // SPA redirect for GitHub Pages
+  (function() {
+    try {
+      // Save the original path in sessionStorage
+      sessionStorage.setItem('redirect', location.href);
+      // Redirect to index.html where SPA will handle it
+      window.location.replace('/');
+    } catch(e) {
+      console.warn('SPA redirect error:', e);
+    }
+  })();
+</script>
+</head>
+<body>
+  <p>Loading...</p>
+</body>
+</html>
