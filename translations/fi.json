@@ -1,5 +1,5 @@
 {
-  "intro": "Hei! Olen 34-vuotias full-stack web-kehittäjä Suomesta, jolla on kahden vuoden kokemus modernien, käyttäjäystävällisten verkkosivustojen ja sovellusten luomisesta. Osaamiseni kattaa front-end ja back-end kehityksen, pilvipalvelut, SEO:n ja verkkosivujen suorituskyvyn optimoinnin. Vapaa-ajallani nautin liikunnasta kuten tenniksestä ja painonnostosta, sekä veneilystä.",
+  "intro": "Hei! Olen 35-vuotias full-stack web-kehittäjä Suomesta, jolla on kahden vuoden kokemus modernien, käyttäjäystävällisten verkkosivustojen ja sovellusten luomisesta. Osaamiseni kattaa front-end ja back-end kehityksen, pilvipalvelut, SEO:n ja verkkosivujen suorituskyvyn optimoinnin. Vapaa-ajallani nautin liikunnasta kuten tenniksestä ja painonnostosta, sekä veneilystä.",
   "skillsTitle": "Taidot ja työkalut",
   "contact": "Petteri Peuri / Yhteystiedot",
   "työ": "Petteri Peuri / Työt",
@@ -12,8 +12,7 @@
     "Jatkuva sivuston ylläpito ja tuki"
   ],
 "servicesOutro": "Olitpa etsimässä mukautettua verkkosivustoa tai tarvitset sivustosi nopeuden ja SEO:n optimointia, olen täällä auttamassa. Jos sinulla on projekti mielessä tai tarvitset apua verkkosivustosi kanssa, älä epäröi ottaa yhteyttä. Ollaan yhteydessä ja keskustellaan siitä, miten voimme tehdä yhteistyötä projektisi toteuttamiseksi ja sen menestyksen varmistamiseksi.",
-"ukkoVelhoIntro": "Ukkovelho on suurin soolo projektini, kuntoilusovellus joka auttaa seuraamaan harjoituksia - painoja, aikoja, matkoja ja muistiinpanoja. Sovellus näyttää edistymisen ja historiatiedot selkeästi, jotta näkee omat vahvuudet ja kehittymisen. Tavoite on pitää motivaatio yllä ja tukea hyvinvointia. back-end on tehty Pythonilla, data tallennetaan MySQL-tietokantaan ja se pyörii Linux VPS:ssä.",
-"visitUkkoVelho": "Vieraile sivustolla",
+"ukkoVelhoIntro": "Ukkovelho on suurin yksin toteuttamani projekti – kuntoilusovellus, joka auttaa käyttäjiä seuraamaan kokonaisvaltaista edistymistään, historiaansa ja harjoitteluunsa liittyviä oivalluksia. Tavoitteena on auttaa ihmisiä hahmottamaan omat heikkoutensa ja vahvuutensa sekä pysymään motivoituneina hyvinvointimatkallaan. Taustajärjestelmä on rakennettu Pythonilla, tiedot tallennetaan MySQL-tietokantaan, ja sovellus on hostattu Linux-VPS:llä. Se on myös ensimmäinen projektini, joka on paketoitu PWA:na Androidille Googlen Bubblewrapin avulla, ja se on tällä hetkellä testausvaiheessa Google Playssa.","visitUkkoVelho": "Vieraile sivustolla",
 "portfolioIntro": "Tein tämän portfolion näyttääkseni matkani ja taitoni web-kehittäjänä. Käytin vain JavaScriptiä ja CSS:ää ilman frameworkkeja. Tavoitteena oli minimalistisuus ja sujuva, responsiivinen käyttökokemus SPA:n avulla.",
 "viewPortfolioGitHub": "Katso Portfolio GitHubissa",
 "kahviIntro": "Sumpille on interaktiivinen hintaseuranta, jossa käyttäjät voivat seurata ja päivittää paikallisia kahvihintoja löytääkseen hyviä tarjouksia lähialueelta. Tein sen pääasiassa JavaScriptillä ja Pythonilla, hyödyntäen Cloudflare workersia.",
